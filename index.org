@@ -2,3 +2,32 @@
 #+description: This is the index of the notes
 
 * Index
+
+* TODO 配置一个适合做笔记的 Emacs
+
+** TODO 熟悉 Emacs 的基本操作
+
+** TODO 熟悉 Org-mode 的基本操作
+
+** TODO 熟悉 org-roam 的基本操作
+
+** TODO 配置 Emacs
+
+*** 1. 使用预配置的框架
+在预配置的框架的基础上完善功能
+
+*** 2. 从零配置 Emacs
+- 文件管理
+- 搜索
+  - buffer 内的搜索
+  - project 中的搜索
+- 补全
+- 快捷键
+- quickEdit
+- Template
+
+**** TODO 基础设置
+
+**** TODO 配置插件
+
+**** TODO 配置 Org-mode 和 org-roam
