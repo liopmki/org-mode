@@ -1,1 +1,13 @@
 #+TITLE: Config Note
+
+- git
+- search
+- replace
+- quickedit
+- completion
+- keybindings
+- snippets
+- templates
+- file management
+
+* Step 1 follow 子龙山人
