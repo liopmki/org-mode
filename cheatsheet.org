@@ -1,0 +1,7 @@
+#+TITLE: My Cheat Sheet
+
+* TODO 记录常用操作
+
+* TODO 完成一个Keymap的思维导图
+
+快捷键 -> 后续键位 -> 不同情况的作用
