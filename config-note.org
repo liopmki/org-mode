@@ -11,3 +11,97 @@
 - file management
 
 * Step 1 follow 子龙山人
+
+** 改键
+目前不需要
+
+** 几个内置功能
+
+*** 获取帮助
+
+| key   | action         |
+|-------+----------------|
+| C-h k | 寻找快捷键帮助 |
+| C-h v | 寻找变量帮助   |
+| C-h f | 寻找函数帮助   |
+
+*** 开启行号
+
+(linum-mode 1)
+
+*** 关闭欢迎界面
+
+(setq inhibit-startup-screen t)
+
+** Elisp and Org-mode
+
+[[https://learnxinyminutes.com/docs/common-lisp/][Learn Lisp in Y minutes]]
+
+*** 当输入内置的变量时，tab会补全
+
+(setq tab-always-indent 'complete)
+
+*** minibuffer补全
+
+(icomplete-mode t)
+
+*** global-set-key
+
+*** 括号补全
+
+(electric-pair-mode t)
+
+*** Major Mode and Minor Mode
+
+*** 关闭工具栏
+
+(tool-bar-mode -1)
+
+*** 关闭滑动条
+
+(scroll-bar-mode -1)
+
+*** 设置光标样式
+
+(setq cursor-type '(bar . 3))
+
+*** 查看快捷键
+
+for example: 查看 C-x 相关的快捷键
+
+C-x C-h
+
+*** 重新加载配置文件
+
+M-x load-file
+
+or
+
+M-x eval-buffer
+
+or
+
+C-x C-e 执行某行 Lisp 代码
+
+*** Org-mode
+
+星号 tab
+
+** 插件
+
+*** company
+
+补全插件
+
+M-x package-list-packages
+
+search company
+
+Tips: 使用 M-x find-function 可以查看 company 的源码
+
+*** 字体大小
+
+(set-face-attribute 'default nil :height 140)
+
+
+到第5天
