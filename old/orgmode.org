@@ -1,0 +1,239 @@
+#+STARTUP: indent
+#+startup: showall
+#+filetags: :orgmode:
+#+TODO: TODO(t) | DONE(d)
+#+TODO: REPORT(r) BUG(b) KNOWNCAUSE(k) | FIXED(f)
+#+TODO: | CANCELED(c)
+#+tags: @work(w) @home(h)
+#+TAGS: laptop car pc sailboat
+#+TAGS: { Context : @a @b }
+#+PROPERTY: NDisks_ALL 1 2 3 4
+#+title: orgmode
+#+author: yang
+#+date: <2023-01-16 周一 22:39>
+#+email: liuyiy4ng@outlook.com
+#+LANGUAGE: zh-cn
+#+options: toc:2
+
+
+* 一级标题             使用`tab`可以展开与关闭
+** 二级标题           使用`C-c C-t`可以将一个标题转换成一条待办事件
+*** 三级标题并以此类推
+| table                 | table | 中文和英文324719 |   |
+|-----------------------+-------+------------------+---|
+| 2023年1月15日17:11:47 | hello | world            |   |
+
+
+
+| 中文    | english |     213 |     123 | 3635634 |
+|---------+---------+---------+---------+---------|
+| abcd    | 中文    | 3635634 |     213 | 3635634 |
+| english | abcd    |    中文 | english |     213 |
+aaaa
+中文
+
+#+begin_center
+hello world
+#+end_center
+
+*** heading3
+** heading2
+sadjgklsjdfsdakgjsadlkfjsdgksldjf
+* heading1
+
+** heading1
+
+* TODO 
+
+* 归档
+** heading1
+
+- hello world
+- [ ] hello world
+  1. hello world
+  2. [ ] nic
+  3. [ ] h
+     4. 
+* 表格
+** 创建
+| 姓名 | 电话 | 年龄 |
+|------+------+------|
+|    0 |   11 |    9 |
+|    5 |    8 |    3 |
+|    7 |    6 |   12 |
+|    4 |    1 |    2 |
+
+--------------------
+
+| hello   | world  |             |
+|---------+--------+-------------|
+| 表格     | 卧槽    | sdlfjlsdjfl |
+| sdlkfjs | 123214 | 崔晓赛风     |
+
+C-c C-c
+在不移动点的情况下重新对齐工作台。
+
+TAB
+重新对齐表格，移动到下一个字段。如有必要，创建一个新行。
+
+S-TAB
+重新对齐，移动到上一个字段。
+
+RET
+重新对齐表格并向下移动到下一行。如有必要，创建一个新行。
+
+S-UP
+S-DOWN
+S-LEFT
+S-RIGHT
+通过与相邻单元格交换来上下左右移动单元格。
+
+
+
+
+
+
+** 链接
+*** 内部链接
+[[heading1]]
+*** 外部链接
+
+file:演示.org
+
+* todo items
+** TODO hello world
+** TODO aaa
+** DONE 阿塞罕甘卡塞缝
+** TODO [#A] sad恒佛赛季安抚
+** CANCELED helllllsdjfklsdj
+- State "CANCELED"   from "FIXED"      [2023-01-16 周一 15:34] \\
+  this is fixed to canceled test
+- State "FIXED"      from "TODO"       [2023-01-16 周一 15:33]
+** CANCELED
+** TODO 任务细分[2/3]
+*** TODO 1
+*** DONE 2
+*** DONE 3[100%]
+**** DONE 5
+**** DONE 4
+**** DONE hello
+** check boxs
+*** TODO organize party[1/2]
+- [-] call people
+  - [ ] Peter
+  - [X] Sarah
+- [X] order food
+*** check box
+- [X] fjsdklaghklsd
+- [X] sdfjkl
+- [ ] sdfkl
+- [ ] dsfjklas
+- [X] sdfjklj
+*** hello world
+#+begin_src
+#+end_src
+* 文件标签 :                                                          :hello:
+** 这个标题的标签是                                                   :顶真:
+** sadgsdkjf                                     :@work:@home:laptop:car:pc:
+** uevsdglksdjflksdjgs                                                   :@a:
+
+
+
+* 属性
+** 经典的
+*** 戈德堡变奏曲
+:PROPERTIES:
+:title:    哥德巴赫变奏曲
+:author:   JS巴赫
+:JS:       javascript
+:NDisk:    sdlkfjas
+:NNNNN:    12341234
+:END:
+
+
+* 时间戳
+<2023-01-19 周四>--<2023-01-27 周五>
+
+** TODO 一个TODO
+- [ ] asdgsd
+- [ ] sdafjklasd
+- [ ] sdafjkl
+- [X] asdfgjkl
+
+  SCHEDULED: <2023-01-31 周二> DEADLINE: <2023-01-17 周二 +1m>
+:PROPERTIES:
+:Effort:   0:30
+:END:
+:LOGBOOK:
+CLOCK: [2023-01-16 周一 21:48]--[2023-01-16 周一 22:18] =>  0:30
+CLOCK: [2023-01-16 周一 21:48]--[2023-01-16 周一 21:48] =>  0:00
+:END:
+asdfsdfsd
+sdfsdfsfasdf
+sd
+fasdfsd
+
+
+
+* 强调和等宽
+
+*ssssss*\\
+/ssssss/
+
+_sssss_  
+=sssss=  
+~asdfsad~  
++sadjgklsd+
+
+* latex
+The radius of the sun is R_sun = 6.96 x 10^8 m.  On the other hand,
+the radius of Alpha Centauri is R_{Alpha Centauri} = 1.28 x R_{sun}.
+
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures
+\end{equation}                          % etc
+
+If $a^2=b$ and \( b=2 \), then the solution must be
+either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+* 文字例子
+#+BEGIN_EXAMPLE
+  Some example from a text file.
+#+END_EXAMPLE
+
+Here is an example
+: Some example from a text file.
+
+#+BEGIN_SRC emacs-lisp
+  (defun org-xor (a b)
+    "Exclusive or."
+    (if a (not b) b))
+#+END_SRC
+
+-----
+
+file:./OIP-C.jpg
+
+#+CAPTION: This is the caption for the next figure link (or table)
+#+NAME:   fig:SED-HR4049
+[[./OIP-c.jpg]]
+
+* 脚注
+
+Org[fn:1]现在看起来比以前好多了[fn:2]
+
+* Footnotes
+[fn:2]  使用CSS美化了网站
+
+[fn:1] 链接是：https://orgmode.org
+
+
+#+begin_src C
+  #include <stdio.h>
+  int main()
+  {
+    printf("hello world");
+    int a=1;
+    printf("a=%d",a);
+    return 0;
+  }
+#+end_src

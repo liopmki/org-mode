@@ -1,0 +1,889 @@
+                               ━━━━━━━━━━
+                                ORG-NOTE
+
+                                oneYang
+                               ━━━━━━━━━━
+
+
+                            <2023-04-24 Mon>
+
+
+Table of Contents
+─────────────────
+
+1. 使用 doom emacs 中的 org mode
+.. 1. 文档结构和基本语法
+..... 1. 标题
+..... 2. 内容可见性
+..... 3. 移动
+..... 4. 结构编辑
+..... 5. 稀疏树 Sparse Trees
+..... 6. 普通列表 Plain Lists
+.. 2. 表格 table
+..... 1. Intro
+..... 2. 创建表格和移动单元格
+..... 3. 列操作
+..... 4. 行操作
+..... 5. 表格排序
+.. 3. 链接 Hyperlinks
+..... 1. 两种基本的连接形式
+..... 2. 内部链接
+..... 3. 外部链接
+..... 4. 处理链接
+.. 4. 待办 TODO Items
+..... 1. 基本 TODO 功能
+..... 2. 多状态工作流
+..... 3. 进度日志记录
+..... 4. 优先级
+..... 5. 将任务分解成子任务
+..... 6. 复选框
+.. 5. 标签 Tags
+..... 1. 标签的形式
+..... 2. 标签的继承
+..... 3. 设置标签                                           :Keybndings:
+..... 4. 标签组
+..... 5. 搜索标签
+.. 6. 属性 Properties
+..... 1. Intro
+..... 2. Keybinding
+.. 7. 日期和时间 Dates and Times
+..... 1. 时间戳 Timestamps
+..... 2. 创建时间戳 Creating Timestamps
+..... 3. 截止日期和日程安排 Deadlines and Scheduling
+..... 4. Clocking Work Time
+.. 8. Capture,Refile,Archive 捕获，重新存档，存档
+..... 1. Capture
+..... 2. Refile and Copy
+..... 3. Archiving
+.. 9. Agenda Views 议程视图
+..... 1. Agenda Files
+..... 2. The Agenda Dispatcher
+..... 3. The Weekly/Daily Agenda
+..... 4. The Global TODO List
+..... 5. Commands in Agenda Buffer
+.. 10. Markup for Rich Contents
+..... 1. Paragraphs
+..... 2. Emphasis and Monospace 强调和等宽
+..... 3. Embedded LaTeX
+..... 4. Literal example
+..... 5. Images
+..... 6. Creating Footnotes
+.. 11. Exporting
+..... 1. The Export Dispatcher
+..... 2. Export Settings
+..... 3. Table of Contents 目录
+..... 4. Inculude Files
+..... 5. Comment Lines
+
+
+      Org Mode compact guide
+      Org Mode Version: 9.6
+
+
+1 使用 doom emacs 中的 org mode
+═══════════════════════════════
+
+1.1 文档结构和基本语法
+──────────────────────
+
+1.1.1 标题
+╌╌╌╌╌╌╌╌╌╌
+
+  使用 * 区分标题层级
+
+
+1.1.2 内容可见性
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+◊ 1.1.2.1 子树循环
+
+  使用 TAB 控制子树的状态
+  ┌────
+  │ ,-> FOLDED -> CHILDREN -> SUBTREE --.
+  │ '-----------------------------------'
+  └────
+
+
+◊ 1.1.2.2 全局循环
+
+  使用 S-TAB 控制整个 Buffer 的状态
+  ┌────
+  │ ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
+  │ '--------------------------------------'
+  └────
+
+
+◊ 1.1.2.3 控制默认的显示状态
+
+  ┌────
+  │ #+startup: overview
+  │ # overview, content, showall, showeveryting, show<n>levels
+  └────
+
+
+1.1.3 移动
+╌╌╌╌╌╌╌╌╌╌
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Doom-Keybinding  Keybinding  Action             
+  ─────────────────────────────────────────────────
+                    C-c C-n     下一个标题         
+                    C-c C-p     上一个标题         
+                    C-c C-f     下一个同级标题     
+                    C-c C-b     上一个同级标题     
+                    C-c C-u     回到更高级别的标题 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.1.4 结构编辑
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Doom-Keybinding  Keybinding         Action                                                                 
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                    M-RET              插入同级标题或列表项                                                   
+                    M-S-RET            插入同级 TODO                                                          
+                    M-Left / M-Right   标题升级 / 降级                                                        
+                    M-Up / M-Down      向上 / 向下移动子树                                                    
+                    C-c C-w            将条目或区域重新归档到不同的位置(标题下的内容会移动到选择的位置并降级) 
+                    C-x n s / C-x n w  缩小子树和展开子树                                                     
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.1.5 稀疏树 Sparse Trees
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+        在大纲树中选中信息构建稀疏树，从而尽可能折叠整个文档，但选
+        中的信息连通其上方的标题结构一起可见。
+
+  • C-c /提示输入一个额外的键来选择稀疏树的创建命令
+
+
+1.1.6 普通列表 Plain Lists
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+◊ 1.1.6.1 3 种列表
+
+  • 无序列表以 “-”, “+”, “*” 开头
+  • 有序列表以 “1.”, “1)” 开头
+  • 描述列表以 “::” 将术语与描述分开example: aaa :: bbb
+
+
+◊ 1.1.6.2 列表操作
+
+  • 列表内容可以用 TAB 来显示和折叠
+  • M-RET插入新项目
+  • M-S-RET插入有复选框的新项目
+  • M-S-Up / M-S-Down向上 / 向下移动项目包括子项目
+  • M-Left / M-Right减少和增加缩进
+  • M-S-Left / M-S-Right减少和增加缩进包括子项目
+  • C-c C-c切换复选框的状态
+  • C-c -循环切换列表使用的符号
+
+
+1.2 表格 table
+──────────────
+
+1.2.1 Intro
+╌╌╌╌╌╌╌╌╌╌╌
+
+  在表格中使用 TAB or RET or C-c C-c可以重新对齐表格
+
+  完成表格的第一行后 C-c RET 即可创建表格
+
+
+1.2.2 创建表格和移动单元格
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • C-c |可以创建表格也可以将符合标准的内容转换成表格
+  • S-Up / Down / Left / Right移动单元格（通过交换相邻两个单元格）
+
+
+1.2.3 列操作
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • M-Left,M-Right向左，向右移动当前列
+  • M-S-Left Kill the current column
+  • M-S-Right在左侧插入一个新列
+
+
+1.2.4 行操作
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • M-Up, M-Down向上，向下移动当前行
+  • M-S-Up Kill the current row or horizontal line
+  • M-S-Down在上方插入新行
+  • C-c -在下方插入水平线
+  • C-c RET在下方插入水平线,并将光标移动到水平线下方
+
+
+1.2.5 表格排序
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • C-c ^
+
+
+1.3 链接 Hyperlinks
+───────────────────
+
+1.3.1 两种基本的连接形式
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ [[LINK][DESCRIPTION]]
+  │ or
+  │ [[LINK]]
+  └────
+
+
+1.3.2 内部链接
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  1. 第一种
+     ┌────
+     │     [[#my-custom-id]]
+     │     这个链接 --> "CUSTOM_ID"属性为 my-custom-id 的标题
+     └────
+  2. 第二种
+     ┌────
+     │    [[target]] or [[target][Click to target]]
+     │    --> <<target>>
+     └────
+
+
+1.3.3 外部链接
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ ‘http://www.astro.uva.nl/=dominik’	    on the web
+  │ ‘file:/home/dominik/images/jupiter.jpg’	file, absolute path
+  │ ‘/home/dominik/images/jupiter.jpg’	    same as above
+  │ ‘file:papers/last.pdf’	                file, relative path
+  │ ‘./papers/last.pdf’	                    same as above
+  │ ‘file:projects.org’	                    another Org file
+  │ ‘docview:papers/last.pdf::NNN’	        open in DocView mode at page NNN
+  │ ‘id:B7423F4D-2E8A-471B-8810-C40F074717E9’	link to heading by ID
+  │ ‘news:comp.emacs’	                        Usenet link
+  │ ‘mailto:adent@galaxy.net’	                mail link
+  │ ‘mhe:folder#id’	                        MH-E message link
+  │ ‘rmail:folder#id’	                        Rmail message link
+  │ ‘gnus:group#id’	                        Gnus article link
+  │ ‘bbdb:R.*Stallman’	                    BBDB link (with regexp)
+  │ ‘irc:/irc.com/#emacs/bob’	                IRC link
+  │ ‘info:org#Hyperlinks’	                    Info node link
+  │ 
+  │ ‘file:~/code/main.c::255’	                Find line 255
+  │ ‘file:~/xx.org::My Target’	            Find ‘<<My Target>>’
+  │ ‘[[file:~/xx.org::#my-custom-id]]’	        Find entry with a custom ID
+  └────
+
+
+1.3.4 处理链接
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • C-c C-l编辑链接插入链接
+  • C-c C-o打开链接
+  • C-c &跳回记录点记录点使用 C-c % 标记
+
+
+1.4 待办 TODO Items
+───────────────────
+
+1.4.1 基本 TODO 功能
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  以 TODO 开头的标题是一个 TODO
+
+  • C-c C-t选择 TODO 状态
+  • S-Right,S-Left切换 TODO 状态
+  • C-c | t查看稀疏树中的 TODO
+  • M-x org-agenda t全局 TODO List
+  • S-M-RET插入新 TODO
+
+
+1.4.2 多状态工作流
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  doom-emacs 默认
+
+
+1.4.3 进度日志记录
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  当任务变化时，进行的操作
+
+
+◊ 1.4.3.1 任务完成 DONE
+
+  ┌────
+  │ (setq org-log-done 'time) ; 任务为DONE时，添加一个"CLOSED:[timestamp]"
+  │ (setq org-log-done 'note) ; 任务为DONE时，添加一个"CLOSED:[timestamp]" 和 note
+  └────
+
+
+◊ 1.4.3.2 跟踪 TODO 状态变化
+
+  ┌────
+  │ #+TODO: TODO(t) WAIT(W@/!) | DONE(d!) CANCELED(c@)
+  └────
+
+  ━━━━━━━━━━━━━━
+   标记  作用   
+  ──────────────
+   “!”   时间戳 
+   “@”   note   
+  ━━━━━━━━━━━━━━
+
+
+1.4.4 优先级
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  org 有 3 个优先级 A B C B 是默认值
+
+  • C-c ,设置优先级
+  • S-Up, S-Down增加,减少优先级
+
+
+1.4.5 将任务分解成子任务
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  在标题后面添加 “[/]” “[%]”
+
+
+1.4.6 复选框
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • M-S-RET insert checkbox
+  • C-c C-c toggle checkbox status
+
+  • ☒ item1[1/3]
+    • ☒ item1-1 [50%]
+      • ☐ item1-1-1
+      • ☑ item1-1-2
+    • ☑ item1-2
+    • ☐ item1-3
+
+
+1.5 标签 Tags
+─────────────
+
+1.5.1 标签的形式
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  每个标题都可以有一个标签列表
+
+  标签包含字母,数字,下划线，@
+
+  ┌────
+  │ :work:
+  │ 
+  │ :work:urgent:
+  └────
+
+
+1.5.2 标签的继承
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  1. 子标题会继承父标题的 Tags
+  2. 设置文件中所有标题都继承的 Tags
+     ┌────
+     │    #+FILETAGS: :Peter:Boss:Secret:
+     └────
+
+
+1.5.3 设置标签                                              :Keybndings:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • C-c C-q插入标签
+  • C-c C-c同上,但需要焦点在标题上
+
+  设置默认的标签列表：
+  ┌────
+  │ #+TAGS: @work @home
+  │ #+TAGS: laptop car pc sailboat
+  │ #+TAGS: @work(w) @home(h) laptop(l) pc(p)
+  └────
+
+
+1.5.4 标签组
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ #+TAGS: [ GTD : Control Persp ]
+  │ #+TAGS: { Context : @Home @Work }
+  └────
+
+
+1.5.5 搜索标签
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • C-c | m or C-c |创建一个稀疏树，其中所有标题都匹配标签搜索。使用前缀
+    参数，忽略不是 TODO 的标题
+  • M-x org-agenda m从所有议程文件（agenda files）中创建标签匹配的全局列
+    表
+  • M-x org-agenda M从所有议程文件中创建标签匹配的全局列表，但仅检查
+    TODO 项目并强制检查子项目
+
+
+1.6 属性 Properties
+───────────────────
+
+1.6.1 Intro
+╌╌╌╌╌╌╌╌╌╌╌
+
+  :属性 1: 66666666
+  ┌────
+  │     :PROPERTIES:
+  │     :Title:     Goldberg Variations
+  │     :Composer:  J.S. Bach
+  │     :Publisher: Deutsche Grammophon
+  │     :NDisks:    1
+  │     :END:
+  └────
+
+  可以定义 Xyz_ALL 来定义 Xyz 的允许值
+
+  设置可以被文件中的任何标题继承的属性:
+  ┌────
+  │ #+PROPERTY: NDisks_ALL 1 2 3 4
+  └────
+
+
+1.6.2 Keybinding
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  :属性 1: 66666666
+  • C-c C-x p or SPC m o设置属性
+  • C-c C-c d从当前标题中删除属性
+
+
+1.7 日期和时间 Dates and Times
+──────────────────────────────
+
+1.7.1 时间戳 Timestamps
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  时间戳
+  ┌────
+  │ <2003-09-16 Tue> or <2003-09-16 Tue 09:39> or <2003-09-16 Tue 12:00-12:30>
+  └────
+
+
+◊ 1.7.1.1 普通时间戳
+
+  一个简单的时间戳只是为一个项目分配一个日期/时间。
+
+
+◊ 1.7.1.2 有重复间隔的时间戳
+
+  ┌────
+  │ <2007-05-16 Wed 12:30 +1w>
+  └────
+  在特定间隔后仍然应用
+
+  间隔：
+  • d days
+  • w weeks
+  • m months
+  • y years
+
+
+◊ 1.7.1.3 日记式的格式 Diary-style expression entries
+
+  对于更复杂的日期范围，Org mode 支持在 emacs 日历中实现特殊表达式日记条
+  目。例如，可选时间：
+  ┌────
+  │     *  22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+  │         <%%(diary-float t 4 2)>
+  └────
+
+
+◊ 1.7.1.4 时间范围
+
+  由 “–” 连接的两个时间戳表示一个范围
+
+
+◊ 1.7.1.5 非活动时间戳
+
+  使用方括号包裹时间戳，这些时间戳不会触发
+
+
+1.7.2 创建时间戳 Creating Timestamps
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding      Action                                                   
+  ──────────────────────────────────────────────────────────────────────────
+   C-c .           插入时间戳，修改时间戳，使用两次添加时间范围             
+   C-c !           和上一条一样，但是插入的是不活跃的时间戳                 
+   S-Left,S-Right  将日期更改一天                                           
+   S-Up,S-Down     在尖括号处，更改时间戳类型；在时间戳中，更改年、月、日等 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.7.3 截止日期和日程安排 Deadlines and Scheduling
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding  Action                                      
+  ─────────────────────────────────────────────────────────
+   C-c C-d     插入 Deadline 和时间戳(预计的项目截止时间)  
+   C-c C-s     插入 Scheduled 和时间戳(预计的项目开始时间) 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.7.4 Clocking Work Time
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  工作时间计时
+
+  记录的是从开始时间到结束时间
+  • clock-in开始计时（签到）
+  • clock-out停止计时（下班）
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding   Action                  Doom-Keybinding 
+  ──────────────────────────────────────────────────────
+   C-c C-x C-i  开始计时（签到）        SPC m c i       
+   C-c C-x C-o  停止计时（下班）        SPC m c o       
+   C-c C-x C-e  更新工作量估计          SPC m c e       
+   C-c C-x C-q  取消时钟（开始计时后）  SPC n C         
+   C-c C-x C-j  跳转到打卡任务的标题                    
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.8 Capture,Refile,Archive 捕获，重新存档，存档
+───────────────────────────────────────────────
+
+1.8.1 Capture
+╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  快速笔记，可以定义模板
+
+
+◊ 1.8.1.1 Setting up capture
+
+  ┌────
+  │ (setq org-default-notes-file (concat org-directory "path/to/filename.org"))
+  └────
+
+
+◊ 1.8.1.2 Using capture
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding       Action                                              Doom-Keybinding 
+  ──────────────────────────────────────────────────────────────────────────────────────
+   M-x org-capture  start capture                                       SPC X           
+   C-c C-c          return to before                                                    
+   C-c C-w          通过将笔记重新归档到不同的地方来完成捕获                            
+   C-c C-k          abort the capture and return to the previous state                  
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+◊ 1.8.1.3 Capture templates
+
+  ┌────
+  │ (setq org-capture-templates
+  │         '(("t" "Todo" entry (file+headline "path/to/todo.org" "Tasks")
+  │             "* TODO %?\n %i\n %a")
+  │           ("j" "Journal" entry (file+datetree "path/to/journal.org")
+  │            "* %?\nEntered on %U\n  %i\n  %a")))
+  └────
+
+  动态插入的内容：
+  • %a注释，通常是用 org-store-link 创建的连接
+  • %i初始内容，调用捕获时的区域
+  • %t，%T时间戳
+  • %u，%U不活跃的时间戳
+  • %？加载模板完成后，光标的位置
+
+
+1.8.2 Refile and Copy
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  将 Capture 的数据重新归档或复制到不同的列表中，例如将 Capture 的数据复
+  制到项目中。
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding       Action                                                                    
+  ────────────────────────────────────────────────────────────────────────────────────────────
+   C-c C-w          Refile the entry or region at piont                                       
+   C-u C-c C-w      Use the refile interface to jump to a heading                             
+   C-u C-u C-c C-w  Jump to the location where org-refile last moved a tree to                
+   C-c M-w          Copying works like refiling,except that the original note is note deleted 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.8.3 Archiving
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  When a project represented by a (sub)tree is finished, you may want to
+  move the tree out of the way and to stop it from contributing to the
+  agenda.
+
+  当一个（子）树代表的项目完成时，你可能想把这个树移出并停止它参与议程。
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding                  Action                                                        
+  ───────────────────────────────────────────────────────────────────────────────────────────
+   C-c C-x C-a                 使用变量 org-archive-default-command 中指定的命令归档当前条目 
+   C-c C-x C-s or short C-c $  将子树从光标位置开始归档到 org-archive-location 给定的位置    
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  默认存档位置与当前文件位于同一目录，名称是“_archive”与文件名连接而成。
+
+
+1.9 Agenda Views 议程视图
+─────────────────────────
+
+1.9.1 Agenda Files
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding      Action                             
+  ────────────────────────────────────────────────────
+   C-c [           将当前文件添加到议程文件列表中     
+   C-c ]           将当前文件移除到议程文件列表中     
+   C-c ’ or C-c ,  循环浏览议程文件列表，依次展示文件 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.9.2 The Agenda Dispatcher
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • DOOM-Keybinding
+    ┌────
+    │ open the agenda dispatcher
+    │ SPC o A
+    └────
+
+
+1.9.3 The Weekly/Daily Agenda
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  时间戳可以触发
+
+
+1.9.4 The Global TODO List
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  SPC o A t or SPC o A T
+
+
+1.9.5 Commands in Agenda Buffer
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • t
+    ┌────
+    │ 下一行
+    └────
+  • p
+    ┌────
+    │ 上一行
+    └────
+  • SPC
+    ┌────
+    │ 在另一个窗口中显示项目的原始位置
+    └────
+  • TAB
+    ┌────
+    │ 转到项目在另一个窗口中的原始位置
+    └────
+  • RET
+    ┌────
+    │ 转到项目的原始位置并删除其他窗口
+    └────
+  • o
+    ┌────
+    │ 删除其他窗口
+    └────
+  • d
+    ┌────
+    │ 切换到日视图
+    └────
+  • w
+    ┌────
+    │ 切换到周视图
+    └────
+  • f
+    ┌────
+    │ 显示进度
+    └────
+  • b
+    ┌────
+    │ 显示更早的日期
+    └────
+  • .
+    ┌────
+    │ 今天
+    └────
+  • j
+    ┌────
+    │ 日期提示，并切换到该日期
+    └────
+  • l
+    ┌────
+    │ 切换日志模式
+    └────
+  • r
+    ┌────
+    │ 重新创建缓冲区
+    └────
+  • s
+    ┌────
+    │ 保存
+    └────
+
+
+1.10 Markup for Rich Contents
+─────────────────────────────
+
+1.10.1 Paragraphs
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Paragraphs are separated by at least one empty line.
+
+  Use “\\” at the end of a line to enforce a line break within a
+  paragraph.
+
+  Format poetry:
+        第一行
+        第二行
+            –someone
+
+  Center:
+                               Hello World!
+
+
+1.10.2 Emphasis and Monospace 强调和等宽
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ *bold*
+  │ /italic/
+  │ _unerlined_
+  │ =verbatim=
+  │ ~code~
+  │ +strike-through+
+  └────
+
+  *bold* /italic/ _unerlined_ `verbatim' `code' +strike-through+
+
+
+1.10.3 Embedded LaTeX
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  The radius of the sun is R_sun = 6.96 x 10^8 m. On the other hand, the
+  radius of Alpha Centauri is R_{Alpha Centauri} = 1.28 x R_{sun}.
+
+  \begin{equation} % arbitrary environments, x=\sqrt{b} % even tables,
+  figures \end{equation} % etc
+
+  If $a^2=b$ and \( b=2 \), then the solution must be either $$
+  a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+
+
+1.10.4 Literal example
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  示例，使用等宽字体,不受标记影响
+  ┌────
+  │ this is a exmaple
+  └────
+
+  Here is an example
+  ┌────
+  │ Some example from a note.org
+  │ another line
+  └────
+
+
+1.10.5 Images
+╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  图像链接
+  ┌────
+  │ [[./link/to/image.png]]
+  └────
+
+
+  定义图片的标题和引用标签
+  <./image.png>
+
+  • Doom-Keybinding: z i toggle the display of image
+
+
+1.10.6 Creating Footnotes
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  脚注的定义
+  ┌────
+  │ this is a footnotes[fn:1]
+  │ ...
+  │ [fn:1] I am footnote
+  └────
+
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Keybinding            Action               
+  ────────────────────────────────────────────
+   C-c C-x f or SPC m f  脚注的相关操作       
+   C-c C-c               在定义和引用之间跳转 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1.11 Exporting
+──────────────
+
+1.11.1 The Export Dispatcher
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  C-c C-e
+  SPC m e
+
+
+1.11.2 Export Settings
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ #+title: this is title
+  │ #+author: default taken from user-full-name
+  │ #+date: a date, fixed, or an Org timestamp
+  │ #+email: default from user-mail-address
+  │ #+LANGUAGE: language code
+  └────
+
+
+1.11.3 Table of Contents 目录
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ #+options: toc:2    (only include two levels in TOC)
+  │ #+options: toc:nil  (no default TOC at all)
+  └────
+
+
+1.11.4 Inculude Files
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ #+include: "path/to/file" src emacs-lisp
+  └────
+  第一个参数是文件路径，第二个参数是指定块的类型，第三个参数指定格式化内
+  容的源代码语言。
+
+  使用 C-c ’ 可以访问包含的文件
+
+
+1.11.5 Comment Lines
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ┌────
+  │ # this is comment
+  │ 
+  │ #+begin_comment
+  │ this is comment
+  │ #+end_comment
+  └────
+
+  • C-c ;将标题前加 COMMENT,会注释掉子树

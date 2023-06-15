@@ -1,0 +1,846 @@
+% Created 2023-04-25 Tue 19:47
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{oneYang}
+\date{\textit{<2023-04-24 Mon>}}
+\title{org-note}
+\hypersetup{
+ pdfauthor={oneYang},
+ pdftitle={org-note},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.6.1)}, 
+ pdflang={English}}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{quote}
+Org Mode compact guide  \\[0pt]
+Org Mode Version: 9.6
+\end{quote}
+
+\section{使用 doom emacs 中的 org mode}
+\label{sec:org650ec81}
+\subsection{文档结构和基本语法}
+\label{sec:org38ad953}
+\subsubsection{标题}
+\label{sec:org8621d12}
+使用 * 区分标题层级
+\subsubsection{内容可见性}
+\label{sec:orgf4591a2}
+\begin{enumerate}
+\item 子树循环
+\label{sec:org5eea55c}
+使用 TAB 控制子树的状态
+\begin{verbatim}
+,-> FOLDED -> CHILDREN -> SUBTREE --.
+'-----------------------------------'
+\end{verbatim}
+\item 全局循环
+\label{sec:org843ad56}
+使用 S-TAB 控制整个 Buffer 的状态
+\begin{verbatim}
+,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
+'--------------------------------------'
+\end{verbatim}
+\item 控制默认的显示状态
+\label{sec:orgd27d2aa}
+\begin{verbatim}
+#+startup: overview
+# overview, content, showall, showeveryting, show<n>levels
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{移动}
+\label{sec:org4aac87f}
+\begin{center}
+\begin{tabular}{lll}
+Doom-Keybinding & Keybinding & Action\\[0pt]
+\hline
+ & C-c C-n & 下一个标题\\[0pt]
+ & C-c C-p & 上一个标题\\[0pt]
+ & C-c C-f & 下一个同级标题\\[0pt]
+ & C-c C-b & 上一个同级标题\\[0pt]
+ & C-c C-u & 回到更高级别的标题\\[0pt]
+\end{tabular}
+\end{center}
+\subsubsection{结构编辑}
+\label{sec:orgbed7193}
+\begin{center}
+\begin{tabular}{lll}
+Doom-Keybinding & Keybinding & Action\\[0pt]
+\hline
+ & M-RET & 插入同级标题或列表项\\[0pt]
+ & M-S-RET & 插入同级 TODO\\[0pt]
+ & M-Left / M-Right & 标题升级 / 降级\\[0pt]
+ & M-Up / M-Down & 向上 / 向下移动子树\\[0pt]
+ & C-c C-w & 将条目或区域重新归档到不同的位置(标题下的内容会移动到选择的位置并降级)\\[0pt]
+ & C-x n s / C-x n w & 缩小子树和展开子树\\[0pt]
+\end{tabular}
+\end{center}
+\subsubsection{稀疏树 Sparse Trees}
+\label{sec:orgd993dff}
+\begin{quote}
+在大纲树中选中信息构建稀疏树，从而尽可能折叠整个文档，但选中的信息连通其上方的标题结构一起可见。
+\end{quote}
+
+\begin{itemize}
+\item C-c /
+提示输入一个额外的键来选择稀疏树的创建命令
+\end{itemize}
+\subsubsection{普通列表 Plain Lists}
+\label{sec:org738e98b}
+\begin{enumerate}
+\item 3 种列表
+\label{sec:org50fc74e}
+\begin{itemize}
+\item 无序列表
+以 ``-'', ``+'', ``*'' 开头
+\item 有序列表
+以 ``1.'', ``1)'' 开头
+\item 描述列表
+以 ``::'' 将术语与描述分开
+example: aaa :: bbb
+\end{itemize}
+\item 列表操作
+\label{sec:org0215f6c}
+\begin{itemize}
+\item 列表内容可以用 TAB 来显示和折叠
+\item M-RET
+插入新项目
+\item M-S-RET
+插入有复选框的新项目
+\item M-S-Up / M-S-Down
+向上 / 向下移动项目包括子项目
+\item M-Left / M-Right
+减少和增加缩进
+\item M-S-Left / M-S-Right
+减少和增加缩进包括子项目
+\item C-c C-c
+切换复选框的状态
+\item C-c -
+循环切换列表使用的符号
+\end{itemize}
+\end{enumerate}
+\subsection{表格 table}
+\label{sec:orgb37c286}
+\subsubsection{Intro}
+\label{sec:org6eb8c90}
+在表格中使用 TAB or RET or C-c C-c
+可以重新对齐表格
+
+完成表格的第一行后 C-c RET 即可创建
+表格
+\subsubsection{创建表格和移动单元格}
+\label{sec:org48441eb}
+\begin{itemize}
+\item C-c |
+可以创建表格也可以将符合标准的内容转换
+成表格
+\item S-Up / Down / Left / Right
+移动单元格（通过交换相邻两个单元格）
+\end{itemize}
+\subsubsection{列操作}
+\label{sec:org9939f59}
+\begin{itemize}
+\item M-Left,M-Right
+向左，向右移动当前列
+\item M-S-Left
+Kill the current column
+\item M-S-Right
+在左侧插入一个新列
+\end{itemize}
+\subsubsection{行操作}
+\label{sec:orgd213c3b}
+\begin{itemize}
+\item M-Up, M-Down
+向上，向下移动当前行
+\item M-S-Up
+Kill the current row or horizontal line
+\item M-S-Down
+在上方插入新行
+\item C-c -
+在下方插入水平线
+\item C-c RET
+在下方插入水平线,并将光标移动到水平线下方
+\end{itemize}
+\subsubsection{表格排序}
+\label{sec:orgf341ef2}
+\begin{itemize}
+\item C-c \^{}
+\end{itemize}
+\subsection{链接 Hyperlinks}
+\label{sec:org6c66eca}
+\subsubsection{两种基本的连接形式}
+\label{sec:org30c7776}
+\begin{verbatim}
+[[LINK][DESCRIPTION]]
+or
+[[LINK]]
+\end{verbatim}
+
+\subsubsection{内部链接}
+\label{sec:orgc3795c7}
+\begin{enumerate}
+\item 第一种
+\begin{verbatim}
+    [[#my-custom-id]]
+    这个链接 --> "CUSTOM_ID"属性为 my-custom-id 的标题
+\end{verbatim}
+\item 第二种
+\begin{verbatim}
+   [[target]] or [[target][Click to target]]
+   --> <<target>>
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{外部链接}
+\label{sec:orgf51d278}
+\begin{verbatim}
+‘http://www.astro.uva.nl/=dominik’	    on the web
+‘file:/home/dominik/images/jupiter.jpg’	file, absolute path
+‘/home/dominik/images/jupiter.jpg’	    same as above
+‘file:papers/last.pdf’	                file, relative path
+‘./papers/last.pdf’	                    same as above
+‘file:projects.org’	                    another Org file
+‘docview:papers/last.pdf::NNN’	        open in DocView mode at page NNN
+‘id:B7423F4D-2E8A-471B-8810-C40F074717E9’	link to heading by ID
+‘news:comp.emacs’	                        Usenet link
+‘mailto:adent@galaxy.net’	                mail link
+‘mhe:folder#id’	                        MH-E message link
+‘rmail:folder#id’	                        Rmail message link
+‘gnus:group#id’	                        Gnus article link
+‘bbdb:R.*Stallman’	                    BBDB link (with regexp)
+‘irc:/irc.com/#emacs/bob’	                IRC link
+‘info:org#Hyperlinks’	                    Info node link
+
+‘file:~/code/main.c::255’	                Find line 255
+‘file:~/xx.org::My Target’	            Find ‘<<My Target>>’
+‘[[file:~/xx.org::#my-custom-id]]’	        Find entry with a custom ID
+\end{verbatim}
+\subsubsection{处理链接}
+\label{sec:org7547868}
+\begin{itemize}
+\item C-c C-l
+编辑链接
+插入链接
+\item C-c C-o
+打开链接
+\item C-c \&
+跳回记录点
+记录点使用 C-c \% 标记
+\end{itemize}
+
+\subsection{待办 TODO Items}
+\label{sec:org4ca4e5f}
+\subsubsection{基本 TODO 功能}
+\label{sec:org0e4ee7e}
+以 TODO 开头的标题是一个 TODO
+
+\begin{itemize}
+\item C-c C-t
+选择 TODO 状态
+\item S-Right,S-Left
+切换 TODO 状态
+\item C-c | t
+查看稀疏树中的 TODO
+\item M-x org-agenda t
+全局 TODO List
+\item S-M-RET
+插入新 TODO
+\end{itemize}
+
+\subsubsection{多状态工作流}
+\label{sec:org2aea1d2}
+doom-emacs 默认
+
+\subsubsection{进度日志记录}
+\label{sec:org38c6e04}
+当任务变化时，进行的操作
+
+\begin{enumerate}
+\item 任务完成 DONE
+\label{sec:org5f74535}
+\begin{verbatim}
+(setq org-log-done 'time) ; 任务为DONE时，添加一个"CLOSED:[timestamp]"
+(setq org-log-done 'note) ; 任务为DONE时，添加一个"CLOSED:[timestamp]" 和 note
+\end{verbatim}
+
+\item 跟踪 TODO 状态变化
+\label{sec:orgc37f033}
+\begin{verbatim}
+#+TODO: TODO(t) WAIT(W@/!) | DONE(d!) CANCELED(c@)
+\end{verbatim}
+
+\begin{center}
+\begin{tabular}{ll}
+标记 & 作用\\[0pt]
+\hline
+``!'' & 时间戳\\[0pt]
+``@'' & note\\[0pt]
+\end{tabular}
+\end{center}
+\end{enumerate}
+
+\subsubsection{优先级}
+\label{sec:orgc2356f8}
+org 有 3 个优先级 A B C
+B 是默认值
+
+\begin{itemize}
+\item C-c ,
+设置优先级
+\item S-Up, S-Down
+增加,减少优先级
+\end{itemize}
+
+\subsubsection{将任务分解成子任务}
+\label{sec:orga18335b}
+在标题后面添加 ``[/]'' ``[\%]''
+
+\subsubsection{复选框}
+\label{sec:org4e6ac79}
+\begin{itemize}
+\item M-S-RET
+insert checkbox
+\item C-c C-c
+toggle checkbox status
+
+\item[{$\boxminus$}] item1[1/3]
+\begin{itemize}
+\item[{$\boxminus$}] item1-1 [50\%]
+\begin{itemize}
+\item[{$\square$}] item1-1-1
+\item[{$\boxtimes$}] item1-1-2
+\end{itemize}
+\item[{$\boxtimes$}] item1-2
+\item[{$\square$}] item1-3
+\end{itemize}
+\end{itemize}
+
+\subsection{标签 Tags}
+\label{sec:org1a064eb}
+\subsubsection{标签的形式}
+\label{sec:orga81c738}
+每个标题都可以有一个标签列表
+
+标签包含字母,数字,下划线，@
+
+\begin{verbatim}
+:work:
+
+:work:urgent:
+\end{verbatim}
+\subsubsection{标签的继承}
+\label{sec:org7c1603f}
+\begin{enumerate}
+\item 子标题会继承父标题的 Tags
+\item 设置文件中所有标题都继承的 Tags
+\begin{verbatim}
+   #+FILETAGS: :Peter:Boss:Secret:
+\end{verbatim}
+\end{enumerate}
+\subsubsection{设置标签\hfill{}\textsc{Keybndings}}
+\label{sec:orgdb9b893}
+\begin{itemize}
+\item C-c C-q
+插入标签
+\item C-c C-c
+同上,但需要焦点在标题上
+\end{itemize}
+
+设置默认的标签列表：
+\begin{verbatim}
+#+TAGS: @work @home
+#+TAGS: laptop car pc sailboat
+#+TAGS: @work(w) @home(h) laptop(l) pc(p)
+\end{verbatim}
+\subsubsection{标签组}
+\label{sec:orgcee02b0}
+\begin{verbatim}
+#+TAGS: [ GTD : Control Persp ]
+#+TAGS: { Context : @Home @Work }
+\end{verbatim}
+\subsubsection{搜索标签}
+\label{sec:org2e00f94}
+\begin{itemize}
+\item C-c | m or C-c |
+创建一个稀疏树，其中所有标题都匹配标签
+搜索。使用前缀参数，忽略不是 TODO 的标题
+\item M-x org-agenda m
+从所有议程文件（agenda files）中创建标签匹配的全局列表
+\item M-x org-agenda M
+从所有议程文件中创建标签匹配的全局列表，但仅检查 TODO 项目并强制检查子项目
+\end{itemize}
+
+\subsection{属性 Properties}
+\label{sec:org170b268}
+\subsubsection{Intro}
+\label{sec:org5b4cd1a}
+:属性 1:    66666666
+\begin{verbatim}
+    :PROPERTIES:
+    :Title:     Goldberg Variations
+    :Composer:  J.S. Bach
+    :Publisher: Deutsche Grammophon
+    :NDisks:    1
+    :END:
+\end{verbatim}
+
+可以定义 Xyz\textsubscript{ALL} 来定义 Xyz 的允许值
+
+设置可以被文件中的任何标题继承的属性:
+\begin{verbatim}
+#+PROPERTY: NDisks_ALL 1 2 3 4
+\end{verbatim}
+
+\subsubsection{Keybinding}
+\label{sec:orgc16d59b}
+:属性 1:    66666666
+\begin{itemize}
+\item C-c C-x p or SPC m o
+设置属性
+\item C-c C-c d
+从当前标题中删除属性
+\end{itemize}
+
+\subsection{日期和时间 Dates and Times}
+\label{sec:orgbe3f332}
+
+\subsubsection{时间戳 Timestamps}
+\label{sec:org27dce46}
+时间戳
+\begin{verbatim}
+<2003-09-16 Tue> or <2003-09-16 Tue 09:39> or <2003-09-16 Tue 12:00-12:30>
+\end{verbatim}
+
+\begin{enumerate}
+\item 普通时间戳
+\label{sec:org5e6e9e6}
+一个简单的时间戳只是为一个项目分配一个日期/时间。
+
+\item 有重复间隔的时间戳
+\label{sec:orgc7ad231}
+\begin{verbatim}
+<2007-05-16 Wed 12:30 +1w>
+\end{verbatim}
+在特定间隔后仍然应用
+
+间隔：
+\begin{itemize}
+\item d
+days
+\item w
+weeks
+\item m
+months
+\item y
+years
+\end{itemize}
+
+\item 日记式的格式 Diary-style expression entries
+\label{sec:org03d6c36}
+
+对于更复杂的日期范围，Org mode 支持在 emacs 日历中实现特殊表达式日记条目。例如，可选时间：
+\begin{verbatim}
+    *  22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+        <%%(diary-float t 4 2)>
+\end{verbatim}
+
+\item 时间范围
+\label{sec:org0dd7fb1}
+由 “--” 连接的两个时间戳表示一个范围
+
+\item 非活动时间戳
+\label{sec:org9b25b82}
+使用方括号包裹时间戳，这些时间戳不会触发
+\end{enumerate}
+
+\subsubsection{创建时间戳 Creating Timestamps}
+\label{sec:orgf96bf22}
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c . & 插入时间戳，修改时间戳，使用两次添加时间范围\\[0pt]
+C-c ! & 和上一条一样，但是插入的是不活跃的时间戳\\[0pt]
+S-Left,S-Right & 将日期更改一天\\[0pt]
+S-Up,S-Down & 在尖括号处，更改时间戳类型；在时间戳中，更改年、月、日等\\[0pt]
+\end{tabular}
+\end{center}
+\subsubsection{截止日期和日程安排 Deadlines and Scheduling}
+\label{sec:org2e0519e}
+
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c C-d & 插入 Deadline 和时间戳(预计的项目截止时间)\\[0pt]
+C-c C-s & 插入 Scheduled 和时间戳(预计的项目开始时间)\\[0pt]
+\end{tabular}
+\end{center}
+\subsubsection{Clocking Work Time}
+\label{sec:org30b6f87}
+
+工作时间计时
+
+记录的是从开始时间到结束时间
+\begin{itemize}
+\item clock-in
+开始计时（签到）
+\item clock-out
+停止计时（下班）
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{lll}
+Keybinding & Action & Doom-Keybinding\\[0pt]
+\hline
+C-c C-x C-i & 开始计时（签到） & SPC m c i\\[0pt]
+C-c C-x C-o & 停止计时（下班） & SPC m c o\\[0pt]
+C-c C-x C-e & 更新工作量估计 & SPC m c e\\[0pt]
+C-c C-x C-q & 取消时钟（开始计时后） & SPC n C\\[0pt]
+C-c C-x C-j & 跳转到打卡任务的标题 & \\[0pt]
+\end{tabular}
+\end{center}
+
+\subsection{Capture,Refile,Archive 捕获，重新存档，存档}
+\label{sec:org3b59f85}
+
+\subsubsection{Capture}
+\label{sec:org699c82a}
+快速笔记，可以定义模板
+
+\begin{enumerate}
+\item Setting up capture
+\label{sec:org60827d1}
+\begin{verbatim}
+(setq org-default-notes-file (concat org-directory "path/to/filename.org"))
+\end{verbatim}
+
+\item Using capture
+\label{sec:org64b39dd}
+\begin{center}
+\begin{tabular}{lll}
+Keybinding & Action & Doom-Keybinding\\[0pt]
+\hline
+M-x org-capture & start capture & SPC X\\[0pt]
+C-c C-c & return to before & \\[0pt]
+C-c C-w & 通过将笔记重新归档到不同的地方来完成捕获 & \\[0pt]
+C-c C-k & abort the capture and return to the previous state & \\[0pt]
+\end{tabular}
+\end{center}
+
+\item Capture templates
+\label{sec:orgbc28ec6}
+\begin{verbatim}
+(setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "path/to/todo.org" "Tasks")
+            "* TODO %?\n %i\n %a")
+          ("j" "Journal" entry (file+datetree "path/to/journal.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
+\end{verbatim}
+
+动态插入的内容：
+\begin{itemize}
+\item \%a
+注释，通常是用 org-store-link 创建的连接
+\item \%i
+初始内容，调用捕获时的区域
+\item \%t，\%T
+时间戳
+\item \%u，\%U
+不活跃的时间戳
+\item \%？
+加载模板完成后，光标的位置
+\end{itemize}
+\end{enumerate}
+
+
+\subsubsection{Refile and Copy}
+\label{sec:orgfe8eb23}
+
+将 Capture 的数据重新归档或复制到不同的列表中，例如将 Capture 的数据复制到项目中。
+
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c C-w & Refile the entry or region at piont\\[0pt]
+C-u C-c C-w & Use the refile interface to jump to a heading\\[0pt]
+C-u C-u C-c C-w & Jump to the location where org-refile last moved a tree to\\[0pt]
+C-c M-w & Copying works like refiling,except that the original note is note deleted\\[0pt]
+\end{tabular}
+\end{center}
+
+\subsubsection{Archiving}
+\label{sec:org6ea6cbf}
+When a project represented by a (sub)tree is finished, you may want to move the tree out of the way and to stop it from contributing to the agenda.
+
+当一个（子）树代表的项目完成时，你可能想把这个树移出并停止它参与议程。
+
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c C-x C-a & 使用变量 org-archive-default-command 中指定的命令归档当前条目\\[0pt]
+C-c C-x C-s or short C-c \$ & 将子树从光标位置开始归档到 org-archive-location 给定的位置\\[0pt]
+\end{tabular}
+\end{center}
+
+默认存档位置与当前文件位于同一目录，名称是``\textsubscript{archive}''与文件名连接而成。
+
+\subsection{Agenda Views 议程视图}
+\label{sec:orgf5fd282}
+
+\subsubsection{Agenda Files}
+\label{sec:orgbc821fe}
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c [ & 将当前文件添加到议程文件列表中\\[0pt]
+C-c ] & 将当前文件移除到议程文件列表中\\[0pt]
+C-c ' or C-c , & 循环浏览议程文件列表，依次展示文件\\[0pt]
+\end{tabular}
+\end{center}
+\subsubsection{The Agenda Dispatcher}
+\label{sec:org1e77462}
+\begin{itemize}
+\item DOOM-Keybinding
+\begin{verbatim}
+open the agenda dispatcher
+SPC o A
+\end{verbatim}
+\end{itemize}
+\subsubsection{The Weekly/Daily Agenda}
+\label{sec:org3300975}
+时间戳可以触发
+\subsubsection{The Global TODO List}
+\label{sec:org493f306}
+SPC o A t or SPC o A T
+
+\subsubsection{Commands in Agenda Buffer}
+\label{sec:org99157e1}
+\begin{itemize}
+\item t
+\begin{verbatim}
+下一行
+\end{verbatim}
+\item p
+\begin{verbatim}
+上一行
+\end{verbatim}
+\item SPC
+\begin{verbatim}
+在另一个窗口中显示项目的原始位置
+\end{verbatim}
+\item TAB
+\begin{verbatim}
+转到项目在另一个窗口中的原始位置
+\end{verbatim}
+\item RET
+\begin{verbatim}
+转到项目的原始位置并删除其他窗口
+\end{verbatim}
+\item o
+\begin{verbatim}
+删除其他窗口
+\end{verbatim}
+\item d
+\begin{verbatim}
+切换到日视图
+\end{verbatim}
+\item w
+\begin{verbatim}
+切换到周视图
+\end{verbatim}
+\item f
+\begin{verbatim}
+显示进度
+\end{verbatim}
+\item b
+\begin{verbatim}
+显示更早的日期
+\end{verbatim}
+\item .
+\begin{verbatim}
+今天
+\end{verbatim}
+\item j
+\begin{verbatim}
+日期提示，并切换到该日期
+\end{verbatim}
+\item l
+\begin{verbatim}
+切换日志模式
+\end{verbatim}
+\item r
+\begin{verbatim}
+重新创建缓冲区
+\end{verbatim}
+\item s
+\begin{verbatim}
+保存
+\end{verbatim}
+\end{itemize}
+
+\subsection{Markup for Rich Contents}
+\label{sec:org6f125f6}
+
+\subsubsection{Paragraphs}
+\label{sec:org7304d2f}
+Paragraphs are separated by at least one empty line.
+
+Use ``$\backslash$\'' at the end of a line to enforce a line break within a paragraph.
+
+Format poetry:
+\begin{verse}
+第一行\\[0pt]
+第二行\\[0pt]
+\hspace*{4em}--someone\\[0pt]
+\end{verse}
+
+Center:
+\begin{center}
+Hello World!
+\end{center}
+
+\subsubsection{Emphasis and Monospace 强调和等宽}
+\label{sec:orge41881d}
+\begin{verbatim}
+*bold*
+/italic/
+_unerlined_
+=verbatim=
+~code~
++strike-through+
+\end{verbatim}
+
+\textbf{bold}
+\emph{italic}
+\uline{unerlined}
+\texttt{verbatim}
+\texttt{code}
+\sout{strike-through}
+
+\subsubsection{Embedded \LaTeX{}}
+\label{sec:org144e2f0}
+The radius of the sun is R\textsubscript{sun} = 6.96 x 10\textsuperscript{8} m.  On the other hand,
+the radius of Alpha Centauri is R\textsubscript{Alpha Centauri} = 1.28 x R\textsubscript{sun}.
+
+\begin{equation}                        \% arbitrary environments,
+x=\sqrt{b}                              \% even tables, figures
+\end{equation}                          \% etc
+
+If \(a^2=b\) and \(b=2\), then the solution must be
+either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+\subsubsection{Literal example}
+\label{sec:orge1d3fda}
+示例，使用等宽字体,不受标记影响
+\begin{verbatim}
+this is a exmaple
+\end{verbatim}
+
+Here is an example
+\begin{verbatim}
+Some example from a note.org
+another line
+\end{verbatim}
+\subsubsection{Images}
+\label{sec:orgfbb08cf}
+图像链接
+\begin{verbatim}
+[[./link/to/image.png]]
+\end{verbatim}
+
+
+定义图片的标题和引用标签
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.9\linewidth]{./image.png}
+\caption{\label{test}This is the caption for the next image link (or table)}
+\end{figure}
+
+\begin{itemize}
+\item Doom-Keybinding: z i
+toggle the display of image
+\end{itemize}
+\subsubsection{Creating Footnotes}
+\label{sec:orga18c706}
+脚注的定义
+\begin{verbatim}
+this is a footnotes[fn:1]
+...
+[fn:1] I am footnote
+\end{verbatim}
+
+
+\begin{center}
+\begin{tabular}{ll}
+Keybinding & Action\\[0pt]
+\hline
+C-c C-x f or SPC m f & 脚注的相关操作\\[0pt]
+C-c C-c & 在定义和引用之间跳转\\[0pt]
+\end{tabular}
+\end{center}
+
+\subsection{Exporting}
+\label{sec:orgcbb1778}
+
+\subsubsection{The Export Dispatcher}
+\label{sec:org2a1127c}
+C-c C-e \\[0pt]
+SPC m e
+\subsubsection{Export Settings}
+\label{sec:org97f75b3}
+\begin{verbatim}
+#+title: this is title
+#+author: default taken from user-full-name
+#+date: a date, fixed, or an Org timestamp
+#+email: default from user-mail-address
+#+LANGUAGE: language code
+\end{verbatim}
+
+\subsubsection{Table of Contents 目录}
+\label{sec:org72e4022}
+\begin{verbatim}
+#+options: toc:2    (only include two levels in TOC)
+#+options: toc:nil  (no default TOC at all)
+\end{verbatim}
+\subsubsection{Inculude Files}
+\label{sec:org1a46a46}
+\begin{verbatim}
+#+include: "path/to/file" src emacs-lisp
+\end{verbatim}
+第一个参数是文件路径，第二个参数是指定块的类型，第三个参数指定格式化内容的源代码语言。
+
+使用 C-c ' 可以访问包含的文件
+
+\subsubsection{Comment Lines}
+\label{sec:orgb66fe88}
+\begin{verbatim}
+# this is comment
+
+#+begin_comment
+this is comment
+#+end_comment
+\end{verbatim}
+
+\begin{itemize}
+\item C-c ;
+将标题前加 COMMENT,会注释掉子树
+\end{itemize}
+\end{document}

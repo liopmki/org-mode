@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head>
+<!-- 2023-01-17 周二 14:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>orgmode</title>
+<meta name="author" content="yang" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">orgmode</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7792553">1. 一级标题             使用`tab`可以展开与关闭</a>
+<ul>
+<li><a href="#org93a0c61">1.1. 二级标题           使用`C-c C-t`可以将一个标题转换成一条待办事件</a></li>
+<li><a href="#org337b8e5">1.2. heading2</a></li>
+</ul>
+</li>
+<li><a href="#org7de2af1">2. heading1</a>
+<ul>
+<li><a href="#org597943d">2.1. heading1</a></li>
+</ul>
+</li>
+<li><a href="#orgddd2c9e">3. <span class="todo TODO">TODO</span> </a></li>
+<li><a href="#org8850ad9">4. 归档</a>
+<ul>
+<li><a href="#org2bd52b8">4.1. heading1</a></li>
+</ul>
+</li>
+<li><a href="#org3f4e6fe">5. 表格</a>
+<ul>
+<li><a href="#orgea580ae">5.1. 创建</a></li>
+<li><a href="#orgd4914af">5.2. 链接</a></li>
+</ul>
+</li>
+<li><a href="#org21339c1">6. todo items</a>
+<ul>
+<li><a href="#orgb24cf85">6.1. <span class="todo TODO">TODO</span> hello world</a></li>
+<li><a href="#orgf7fc85d">6.2. <span class="todo TODO">TODO</span> aaa</a></li>
+<li><a href="#org9831b87">6.3. <span class="done DONE">DONE</span> 阿塞罕甘卡塞缝</a></li>
+<li><a href="#org3a78a71">6.4. <span class="todo TODO">TODO</span> sad恒佛赛季安抚</a></li>
+<li><a href="#org29d2e68">6.5. <span class="done CANCELED">CANCELED</span> helllllsdjfklsdj</a></li>
+<li><a href="#org22847e1">6.6. CANCELED</a></li>
+<li><a href="#org950b596">6.7. <span class="todo TODO">TODO</span> 任务细分<code>[1/3]</code></a></li>
+<li><a href="#orgf5652b4">6.8. check boxs</a></li>
+</ul>
+</li>
+<li><a href="#orge0de7e1">7. 文件标签 :&#xa0;&#xa0;&#xa0;<span class="tag"><span class="hello">hello</span></span></a>
+<ul>
+<li><a href="#org2bec1c6">7.1. 这个标题的标签是&#xa0;&#xa0;&#xa0;<span class="tag"><span class="__">顶真</span></span></a></li>
+<li><a href="#orgc3624a9">7.2. sadgsdkjf&#xa0;&#xa0;&#xa0;<span class="tag"><span class="_work">@work</span>&#xa0;<span class="_home">@home</span>&#xa0;<span class="laptop">laptop</span>&#xa0;<span class="car">car</span>&#xa0;<span class="pc">pc</span></span></a></li>
+<li><a href="#org335808e">7.3. uevsdglksdjflksdjgs&#xa0;&#xa0;&#xa0;<span class="tag"><span class="_a">@a</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org763798e">8. 属性</a>
+<ul>
+<li><a href="#orgef8b7b1">8.1. 经典的</a></li>
+</ul>
+</li>
+<li><a href="#orgf230903">9. 时间戳</a>
+<ul>
+<li><a href="#org21744ee">9.1. <span class="todo TODO">TODO</span> 一个TODO</a></li>
+</ul>
+</li>
+<li><a href="#orgbdb8593">10. 强调和等宽</a></li>
+<li><a href="#org754e046">11. latex</a></li>
+<li><a href="#orgb8b4392">12. 文字例子</a></li>
+<li><a href="#org0cd5f27">13. 脚注</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org7792553" class="outline-2">
+<h2 id="org7792553"><span class="section-number-2">1.</span> 一级标题             使用`tab`可以展开与关闭</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org93a0c61" class="outline-3">
+<h3 id="org93a0c61"><span class="section-number-3">1.1.</span> 二级标题           使用`C-c C-t`可以将一个标题转换成一条待办事件</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org11962a3" class="outline-4">
+<h4 id="org11962a3"><span class="section-number-4">1.1.1.</span> 三级标题并以此类推</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">table</th>
+<th scope="col" class="org-left">table</th>
+<th scope="col" class="org-left">中文和英文324719</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">2023年1月15日17:11:47</td>
+<td class="org-left">hello</td>
+<td class="org-left">world</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">中文</th>
+<th scope="col" class="org-left">english</th>
+<th scope="col" class="org-right">213</th>
+<th scope="col" class="org-right">123</th>
+<th scope="col" class="org-right">3635634</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">abcd</td>
+<td class="org-left">中文</td>
+<td class="org-right">3635634</td>
+<td class="org-right">213</td>
+<td class="org-right">3635634</td>
+</tr>
+
+<tr>
+<td class="org-left">english</td>
+<td class="org-left">abcd</td>
+<td class="org-right">中文</td>
+<td class="org-right">english</td>
+<td class="org-right">213</td>
+</tr>
+</tbody>
+</table>
+<p>
+aaaa
+中文
+</p>
+
+<div class="org-center">
+<p>
+hello world
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcf41de1" class="outline-4">
+<h4 id="orgcf41de1"><span class="section-number-4">1.1.2.</span> heading3</h4>
+</div>
+</div>
+<div id="outline-container-org337b8e5" class="outline-3">
+<h3 id="org337b8e5"><span class="section-number-3">1.2.</span> heading2</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+sadjgklsjdfsdakgjsadlkfjsdgksldjf
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7de2af1" class="outline-2">
+<h2 id="org7de2af1"><span class="section-number-2">2.</span> heading1</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org597943d" class="outline-3">
+<h3 id="org597943d"><span class="section-number-3">2.1.</span> heading1</h3>
+</div>
+</div>
+
+<div id="outline-container-orgddd2c9e" class="outline-2">
+<h2 id="orgddd2c9e"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> </h2>
+</div>
+
+<div id="outline-container-org8850ad9" class="outline-2">
+<h2 id="org8850ad9"><span class="section-number-2">4.</span> 归档</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org2bd52b8" class="outline-3">
+<h3 id="org2bd52b8"><span class="section-number-3">4.1.</span> heading1</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>hello world</li>
+<li class="off"><code>[&#xa0;]</code> hello world
+<ol class="org-ol">
+<li>hello world</li>
+<li class="off"><code>[&#xa0;]</code> nic</li>
+<li class="off"><code>[&#xa0;]</code> h
+<ol class="org-ol">
+<li></li>
+</ol></li>
+</ol></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f4e6fe" class="outline-2">
+<h2 id="org3f4e6fe"><span class="section-number-2">5.</span> 表格</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgea580ae" class="outline-3">
+<h3 id="orgea580ae"><span class="section-number-3">5.1.</span> 创建</h3>
+<div class="outline-text-3" id="text-5-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">姓名</th>
+<th scope="col" class="org-right">电话</th>
+<th scope="col" class="org-right">年龄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">11</td>
+<td class="org-right">9</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-right">8</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-right">6</td>
+<td class="org-right">12</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">hello</th>
+<th scope="col" class="org-left">world</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+C-c C-c
+在不移动点的情况下重新对齐工作台。
+</p>
+
+<p>
+TAB
+重新对齐表格，移动到下一个字段。如有必要，创建一个新行。
+</p>
+
+<p>
+S-TAB
+重新对齐，移动到上一个字段。
+</p>
+
+<p>
+RET
+重新对齐表格并向下移动到下一行。如有必要，创建一个新行。
+</p>
+
+<p>
+S-UP
+S-DOWN
+S-LEFT
+S-RIGHT
+通过与相邻单元格交换来上下左右移动单元格。
+</p>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-orgd4914af" class="outline-3">
+<h3 id="orgd4914af"><span class="section-number-3">5.2.</span> 链接</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-org506f42a" class="outline-4">
+<h4 id="org506f42a"><span class="section-number-4">5.2.1.</span> 内部链接</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+<a href="#org7de2af1">2</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org21833f0" class="outline-4">
+<h4 id="org21833f0"><span class="section-number-4">5.2.2.</span> 外部链接</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+<a href="演示.html">演示.html</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org21339c1" class="outline-2">
+<h2 id="org21339c1"><span class="section-number-2">6.</span> todo items</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgb24cf85" class="outline-3">
+<h3 id="orgb24cf85"><span class="section-number-3">6.1.</span> <span class="todo TODO">TODO</span> hello world</h3>
+</div>
+<div id="outline-container-orgf7fc85d" class="outline-3">
+<h3 id="orgf7fc85d"><span class="section-number-3">6.2.</span> <span class="todo TODO">TODO</span> aaa</h3>
+</div>
+<div id="outline-container-org9831b87" class="outline-3">
+<h3 id="org9831b87"><span class="section-number-3">6.3.</span> <span class="done DONE">DONE</span> 阿塞罕甘卡塞缝</h3>
+</div>
+<div id="outline-container-org3a78a71" class="outline-3">
+<h3 id="org3a78a71"><span class="section-number-3">6.4.</span> <span class="todo TODO">TODO</span> sad恒佛赛季安抚</h3>
+</div>
+<div id="outline-container-org29d2e68" class="outline-3">
+<h3 id="org29d2e68"><span class="section-number-3">6.5.</span> <span class="done CANCELED">CANCELED</span> helllllsdjfklsdj</h3>
+<div class="outline-text-3" id="text-6-5">
+<ul class="org-ul">
+<li>State "CANCELED"   from "FIXED"      <span class="timestamp-wrapper"><span class="timestamp">[2023-01-16 周一 15:34] </span></span> <br />
+this is fixed to canceled test</li>
+<li>State "FIXED"      from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2023-01-16 周一 15:33]</span></span></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org22847e1" class="outline-3">
+<h3 id="org22847e1"><span class="section-number-3">6.6.</span> CANCELED</h3>
+</div>
+<div id="outline-container-org950b596" class="outline-3">
+<h3 id="org950b596"><span class="section-number-3">6.7.</span> <span class="todo TODO">TODO</span> 任务细分<code>[1/3]</code></h3>
+<div class="outline-text-3" id="text-6-7">
+</div>
+<div id="outline-container-org9e3fc08" class="outline-4">
+<h4 id="org9e3fc08"><span class="section-number-4">6.7.1.</span> <span class="todo TODO">TODO</span> 1</h4>
+</div>
+<div id="outline-container-org2667a0f" class="outline-4">
+<h4 id="org2667a0f"><span class="section-number-4">6.7.2.</span> <span class="done DONE">DONE</span> 2</h4>
+</div>
+<div id="outline-container-org44fd92d" class="outline-4">
+<h4 id="org44fd92d"><span class="section-number-4">6.7.3.</span> <span class="todo TODO">TODO</span> 3<code>[100%]</code></h4>
+<div class="outline-text-4" id="text-6-7-3">
+</div>
+<ol class="org-ol">
+<li><a id="org6a5d8a4"></a><span class="done DONE">DONE</span> 5<br /></li>
+<li><a id="orgc93e5be"></a><span class="done DONE">DONE</span> 4<br /></li>
+<li><a id="orgfd2234c"></a><span class="done DONE">DONE</span> hello<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgf5652b4" class="outline-3">
+<h3 id="orgf5652b4"><span class="section-number-3">6.8.</span> check boxs</h3>
+<div class="outline-text-3" id="text-6-8">
+</div>
+<div id="outline-container-orgc597077" class="outline-4">
+<h4 id="orgc597077"><span class="section-number-4">6.8.1.</span> <span class="todo TODO">TODO</span> organize party<code>[1/2]</code></h4>
+<div class="outline-text-4" id="text-6-8-1">
+<ul class="org-ul">
+<li class="trans"><code>[-]</code> call people
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Peter</li>
+<li class="on"><code>[X]</code> Sarah</li>
+</ul></li>
+<li class="on"><code>[X]</code> order food</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3ecf142" class="outline-4">
+<h4 id="org3ecf142"><span class="section-number-4">6.8.2.</span> check box</h4>
+<div class="outline-text-4" id="text-6-8-2">
+<ul class="org-ul">
+<li class="on"><code>[X]</code> fjsdklaghklsd</li>
+<li class="on"><code>[X]</code> sdfjkl</li>
+<li class="off"><code>[&#xa0;]</code> sdfkl</li>
+<li class="off"><code>[&#xa0;]</code> dsfjklas</li>
+<li class="on"><code>[X]</code> sdfjklj</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga33d975" class="outline-4">
+<h4 id="orga33d975"><span class="section-number-4">6.8.3.</span> hello world</h4>
+<div class="outline-text-4" id="text-6-8-3">
+<pre class="example">
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge0de7e1" class="outline-2">
+<h2 id="orge0de7e1"><span class="section-number-2">7.</span> 文件标签 :&#xa0;&#xa0;&#xa0;<span class="tag"><span class="hello">hello</span></span></h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org2bec1c6" class="outline-3">
+<h3 id="org2bec1c6"><span class="section-number-3">7.1.</span> 这个标题的标签是&#xa0;&#xa0;&#xa0;<span class="tag"><span class="__">顶真</span></span></h3>
+</div>
+<div id="outline-container-orgc3624a9" class="outline-3">
+<h3 id="orgc3624a9"><span class="section-number-3">7.2.</span> sadgsdkjf&#xa0;&#xa0;&#xa0;<span class="tag"><span class="_work">@work</span>&#xa0;<span class="_home">@home</span>&#xa0;<span class="laptop">laptop</span>&#xa0;<span class="car">car</span>&#xa0;<span class="pc">pc</span></span></h3>
+</div>
+<div id="outline-container-org335808e" class="outline-3">
+<h3 id="org335808e"><span class="section-number-3">7.3.</span> uevsdglksdjflksdjgs&#xa0;&#xa0;&#xa0;<span class="tag"><span class="_a">@a</span></span></h3>
+</div>
+</div>
+
+
+
+<div id="outline-container-org763798e" class="outline-2">
+<h2 id="org763798e"><span class="section-number-2">8.</span> 属性</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orgef8b7b1" class="outline-3">
+<h3 id="orgef8b7b1"><span class="section-number-3">8.1.</span> 经典的</h3>
+<div class="outline-text-3" id="text-8-1">
+</div>
+<div id="outline-container-org72dc5b5" class="outline-4">
+<h4 id="org72dc5b5"><span class="section-number-4">8.1.1.</span> 戈德堡变奏曲</h4>
+<div class="outline-text-4" id="text-8-1-1">
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf230903" class="outline-2">
+<h2 id="orgf230903"><span class="section-number-2">9.</span> 时间戳</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2023-01-19 周四&gt;&#x2013;&lt;2023-01-27 周五&gt;</span></span>
+</p>
+</div>
+
+<div id="outline-container-org21744ee" class="outline-3">
+<h3 id="org21744ee"><span class="section-number-3">9.1.</span> <span class="todo TODO">TODO</span> 一个TODO</h3>
+<div class="outline-text-3" id="text-9-1">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> asdgsd</li>
+<li class="off"><code>[&#xa0;]</code> sdafjklasd</li>
+<li class="off"><code>[&#xa0;]</code> sdafjkl</li>
+<li class="on"><code>[X]</code> <p>
+asdfgjkl
+</p>
+
+<p>
+SCHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2023-01-31 周二&gt; </span></span> DEADLINE: <span class="timestamp-wrapper"><span class="timestamp">&lt;2023-01-17 周二 +1m&gt;</span></span>
+</p></li>
+</ul>
+<p>
+:Effort:   0:30
+</p>
+<p>
+asdfsdfsd
+sdfsdfsfasdf
+sd
+fasdfsd
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgbdb8593" class="outline-2">
+<h2 id="orgbdb8593"><span class="section-number-2">10.</span> 强调和等宽</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<b>ssssss</b><br />
+<i>ssssss</i>
+</p>
+
+<p>
+<span class="underline">sssss</span>  
+<code>sssss</code>  
+<code>asdfsad</code>  
+<del>sadjgklsd</del>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org754e046" class="outline-2">
+<h2 id="org754e046"><span class="section-number-2">11.</span> latex</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+The radius of the sun is R<sub>sun</sub> = 6.96 x 10<sup>8</sup> m.  On the other hand,
+the radius of Alpha Centauri is R<sub>Alpha Centauri</sub> = 1.28 x R<sub>sun</sub>.
+</p>
+
+<p>
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures
+\end{equation}                          % etc
+</p>
+
+<p>
+If \(a^2=b\) and \( b=2 \), then the solution must be
+either \[ a=+\sqrt{2} \] or \[ a=-\sqrt{2} \].
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8b4392" class="outline-2">
+<h2 id="orgb8b4392"><span class="section-number-2">12.</span> 文字例子</h2>
+<div class="outline-text-2" id="text-12">
+<pre class="example" id="org1995706">
+Some example from a text file.
+</pre>
+
+<p>
+Here is an example
+</p>
+<pre class="example">
+Some example from a text file.
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defun org-xor (a b)
+  "Exclusive or."
+  (if a (not b) b))
+</pre>
+</div>
+
+<hr />
+
+
+<div id="org9988e0c" class="figure">
+<p><img src="./OIP-C.jpg" alt="OIP-C.jpg" />
+</p>
+</div>
+
+
+<div id="orgb9e5a07" class="figure">
+<p><img src="./OIP-c.jpg" alt="OIP-c.jpg" />
+</p>
+<p><span class="figure-number">Figure 1: </span>This is the caption for the next figure link (or table)</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0cd5f27" class="outline-2">
+<h2 id="org0cd5f27"><span class="section-number-2">13.</span> 脚注</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+Org<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>现在看起来比以前好多了<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+链接是：<a href="https://orgmode.org">https://orgmode.org</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+使用CSS美化了网站
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2023-01-16 周一 22:39</p>
+<p class="author">Author: yang</p>
+<p class="date">Created: 2023-01-17 周二 14:23</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+* heading1
+** heading2
+:PROPERTIES:
+:CUSTOM_ID: 1
+:END:
+* test
+[[#1]]
+
+SPC m l l   insert link
+C-c C-l     insert link
+C-c C-o     open link

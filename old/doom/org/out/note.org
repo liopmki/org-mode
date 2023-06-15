@@ -1,0 +1,601 @@
+  #+title: org-note
+  #+date: <2023-04-24>
+
+#+begin_quote
+Org Mode compact guide  \\
+Org Mode Version: 9.6
+#+end_quote
+
+* 使用 doom emacs 中的 org mode
+** 文档结构和基本语法
+*** 标题
+使用 * 区分标题层级
+*** 内容可见性
+**** 子树循环
+使用 TAB 控制子树的状态
+#+begin_src
+,-> FOLDED -> CHILDREN -> SUBTREE --.
+'-----------------------------------'
+#+end_src
+**** 全局循环
+使用 S-TAB 控制整个 Buffer 的状态
+#+begin_src
+,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
+'--------------------------------------'
+#+end_src
+**** 控制默认的显示状态
+#+begin_src org
+#+startup: overview
+# overview, content, showall, showeveryting, show<n>levels
+#+end_src
+
+*** 移动
+| Doom-Keybinding | Keybinding | Action             |
+|-----------------+------------+--------------------|
+|                 | C-c C-n    | 下一个标题         |
+|                 | C-c C-p    | 上一个标题         |
+|                 | C-c C-f    | 下一个同级标题     |
+|                 | C-c C-b    | 上一个同级标题     |
+|                 | C-c C-u    | 回到更高级别的标题 |
+*** 结构编辑
+| Doom-Keybinding | Keybinding        | Action                                                                 |
+|-----------------+-------------------+------------------------------------------------------------------------|
+|                 | M-RET             | 插入同级标题或列表项                                                   |
+|                 | M-S-RET           | 插入同级 TODO                                                           |
+|                 | M-Left / M-Right  | 标题升级 / 降级                                                        |
+|                 | M-Up / M-Down     | 向上 / 向下移动子树                                                    |
+|                 | C-c C-w           | 将条目或区域重新归档到不同的位置(标题下的内容会移动到选择的位置并降级) |
+|                 | C-x n s / C-x n w | 缩小子树和展开子树                                                     |
+*** 稀疏树 Sparse Trees
+#+begin_quote
+在大纲树中选中信息构建稀疏树，从而尽可能折叠整个文档，但选中的信息连通其上方的标题结构一起可见。
+#+end_quote
+
+- C-c /
+  提示输入一个额外的键来选择稀疏树的创建命令
+*** 普通列表 Plain Lists
+**** 3 种列表
+- 无序列表
+  以 "-", "+", "*" 开头
+- 有序列表
+  以 "1.", "1)" 开头
+- 描述列表
+  以 "::" 将术语与描述分开
+  example: aaa :: bbb
+**** 列表操作
+- 列表内容可以用 TAB 来显示和折叠
+- M-RET
+  插入新项目
+- M-S-RET
+  插入有复选框的新项目
+- M-S-Up / M-S-Down
+  向上 / 向下移动项目包括子项目
+- M-Left / M-Right
+  减少和增加缩进
+- M-S-Left / M-S-Right
+  减少和增加缩进包括子项目
+- C-c C-c
+  切换复选框的状态
+- C-c -
+  循环切换列表使用的符号
+** 表格 table
+*** Intro
+在表格中使用 TAB or RET or C-c C-c
+可以重新对齐表格
+
+完成表格的第一行后 C-c RET 即可创建
+表格
+*** 创建表格和移动单元格
+- C-c |
+  可以创建表格也可以将符合标准的内容转换
+  成表格
+- S-Up / Down / Left / Right
+  移动单元格（通过交换相邻两个单元格）
+*** 列操作
+- M-Left,M-Right
+  向左，向右移动当前列
+- M-S-Left
+  Kill the current column
+- M-S-Right
+  在左侧插入一个新列
+*** 行操作
+- M-Up, M-Down
+  向上，向下移动当前行
+- M-S-Up
+  Kill the current row or horizontal line
+- M-S-Down
+  在上方插入新行
+- C-c -
+  在下方插入水平线
+- C-c RET
+  在下方插入水平线,并将光标移动到水平线下方
+*** 表格排序
+- C-c ^
+** 链接 Hyperlinks
+*** 两种基本的连接形式
+#+begin_src org
+[[LINK][DESCRIPTION]]
+or
+[[LINK]]
+#+end_src
+
+*** 内部链接
+1. 第一种
+    #+begin_src org
+    [[#my-custom-id]]
+    这个链接 --> "CUSTOM_ID"属性为 my-custom-id 的标题
+    #+end_src
+2. 第二种
+   #+begin_src org
+   [[target]] or [[target][Click to target]]
+   --> <<target>>
+   #+end_src
+
+*** 外部链接
+#+begin_example
+‘http://www.astro.uva.nl/=dominik’	    on the web
+‘file:/home/dominik/images/jupiter.jpg’	file, absolute path
+‘/home/dominik/images/jupiter.jpg’	    same as above
+‘file:papers/last.pdf’	                file, relative path
+‘./papers/last.pdf’	                    same as above
+‘file:projects.org’	                    another Org file
+‘docview:papers/last.pdf::NNN’	        open in DocView mode at page NNN
+‘id:B7423F4D-2E8A-471B-8810-C40F074717E9’	link to heading by ID
+‘news:comp.emacs’	                        Usenet link
+‘mailto:adent@galaxy.net’	                mail link
+‘mhe:folder#id’	                        MH-E message link
+‘rmail:folder#id’	                        Rmail message link
+‘gnus:group#id’	                        Gnus article link
+‘bbdb:R.*Stallman’	                    BBDB link (with regexp)
+‘irc:/irc.com/#emacs/bob’	                IRC link
+‘info:org#Hyperlinks’	                    Info node link
+
+‘file:~/code/main.c::255’	                Find line 255
+‘file:~/xx.org::My Target’	            Find ‘<<My Target>>’
+‘[[file:~/xx.org::#my-custom-id]]’	        Find entry with a custom ID
+#+end_example
+*** 处理链接
+- C-c C-l
+  编辑链接
+  插入链接
+- C-c C-o
+  打开链接
+- C-c &
+  跳回记录点
+  记录点使用 C-c % 标记
+
+** 待办 TODO Items
+*** 基本 TODO 功能
+以 TODO 开头的标题是一个 TODO
+
+- C-c C-t
+  选择 TODO 状态
+- S-Right,S-Left
+  切换 TODO 状态
+- C-c | t
+  查看稀疏树中的 TODO
+- M-x org-agenda t
+  全局 TODO List
+- S-M-RET
+  插入新 TODO
+
+*** 多状态工作流
+doom-emacs 默认
+
+*** 进度日志记录
+当任务变化时，进行的操作
+
+**** 任务完成 DONE
+#+begin_src elisp
+(setq org-log-done 'time) ; 任务为DONE时，添加一个"CLOSED:[timestamp]"
+(setq org-log-done 'note) ; 任务为DONE时，添加一个"CLOSED:[timestamp]" 和 note
+#+end_src
+
+**** 跟踪 TODO 状态变化
+#+begin_example org
+,#+TODO: TODO(t) WAIT(W@/!) | DONE(d!) CANCELED(c@)
+#+end_example
+
+| 标记 | 作用   |
+|------+--------|
+| "!"  | 时间戳 |
+| "@"  | note   |
+
+*** 优先级
+org 有 3 个优先级 A B C
+B 是默认值
+
+- C-c ,
+  设置优先级
+- S-Up, S-Down
+  增加,减少优先级
+
+*** 将任务分解成子任务
+在标题后面添加 "[/]" "[%]"
+
+*** 复选框
+- M-S-RET
+  insert checkbox
+- C-c C-c
+  toggle checkbox status
+
+- [-] item1[1/3]
+  - [-] item1-1 [50%]
+    - [ ] item1-1-1
+    - [X] item1-1-2
+  - [X] item1-2
+  - [ ] item1-3
+
+** 标签 Tags
+*** 标签的形式
+每个标题都可以有一个标签列表
+
+标签包含字母,数字,下划线，@
+
+#+begin_example
+:work:
+
+:work:urgent:
+#+end_example
+*** 标签的继承
+1. 子标题会继承父标题的 Tags
+2. 设置文件中所有标题都继承的 Tags
+   #+begin_example
+   #+FILETAGS: :Peter:Boss:Secret:
+   #+end_example
+*** 设置标签 :Keybndings:
+- C-c C-q
+  插入标签
+- C-c C-c
+  同上,但需要焦点在标题上
+
+设置默认的标签列表：
+#+begin_example
+#+TAGS: @work @home
+#+TAGS: laptop car pc sailboat
+#+TAGS: @work(w) @home(h) laptop(l) pc(p)
+#+end_example
+*** 标签组
+#+begin_example
+#+TAGS: [ GTD : Control Persp ]
+#+TAGS: { Context : @Home @Work }
+#+end_example
+*** 搜索标签
+- C-c | m or C-c |
+  创建一个稀疏树，其中所有标题都匹配标签
+  搜索。使用前缀参数，忽略不是 TODO 的标题
+- M-x org-agenda m
+  从所有议程文件（agenda files）中创建标签匹配的全局列表
+- M-x org-agenda M
+  从所有议程文件中创建标签匹配的全局列表，但仅检查 TODO 项目并强制检查子项目
+
+** 属性 Properties
+*** Intro
+:PROPERTIES:
+:属性 1:    66666666
+:END:
+#+begin_example
+    :PROPERTIES:
+    :Title:     Goldberg Variations
+    :Composer:  J.S. Bach
+    :Publisher: Deutsche Grammophon
+    :NDisks:    1
+    :END:
+#+end_example
+
+可以定义 Xyz_ALL 来定义 Xyz 的允许值
+
+设置可以被文件中的任何标题继承的属性:
+#+begin_example
+#+PROPERTY: NDisks_ALL 1 2 3 4
+#+end_example
+
+*** Keybinding
+:PROPERTIES:
+:属性 1:    66666666
+:END:
+- C-c C-x p or SPC m o
+  设置属性
+- C-c C-c d
+  从当前标题中删除属性
+
+** 日期和时间 Dates and Times
+
+*** 时间戳 Timestamps
+时间戳
+#+begin_example
+<2003-09-16 Tue> or <2003-09-16 Tue 09:39> or <2003-09-16 Tue 12:00-12:30>
+#+end_example
+
+**** 普通时间戳
+一个简单的时间戳只是为一个项目分配一个日期/时间。
+
+**** 有重复间隔的时间戳
+#+begin_example
+<2007-05-16 Wed 12:30 +1w>
+#+end_example
+在特定间隔后仍然应用
+
+间隔：
+- d
+  days
+- w
+  weeks
+- m
+  months
+- y
+  years
+
+**** 日记式的格式 Diary-style expression entries
+
+对于更复杂的日期范围，Org mode 支持在 emacs 日历中实现特殊表达式日记条目。例如，可选时间：
+#+begin_example
+    *  22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+        <%%(diary-float t 4 2)>
+#+end_example
+
+**** 时间范围
+由 “--” 连接的两个时间戳表示一个范围
+
+**** 非活动时间戳
+使用方括号包裹时间戳，这些时间戳不会触发
+
+*** 创建时间戳 Creating Timestamps
+| Keybinding     | Action                                                   |
+|----------------+----------------------------------------------------------|
+| C-c .          | 插入时间戳，修改时间戳，使用两次添加时间范围             |
+| C-c !          | 和上一条一样，但是插入的是不活跃的时间戳                 |
+| S-Left,S-Right | 将日期更改一天                                           |
+| S-Up,S-Down    | 在尖括号处，更改时间戳类型；在时间戳中，更改年、月、日等 |
+*** 截止日期和日程安排 Deadlines and Scheduling
+
+| Keybinding | Action                                    |
+|------------+-------------------------------------------|
+| C-c C-d    | 插入 Deadline 和时间戳(预计的项目截止时间)  |
+| C-c C-s    | 插入 Scheduled 和时间戳(预计的项目开始时间) |
+*** Clocking Work Time
+
+工作时间计时
+
+记录的是从开始时间到结束时间
+- clock-in
+  开始计时（签到）
+- clock-out
+  停止计时（下班）
+
+| Keybinding  | Action                 | Doom-Keybinding |
+|-------------+------------------------+-----------------|
+| C-c C-x C-i | 开始计时（签到）       | SPC m c i       |
+| C-c C-x C-o | 停止计时（下班）       | SPC m c o       |
+| C-c C-x C-e | 更新工作量估计         | SPC m c e       |
+| C-c C-x C-q | 取消时钟（开始计时后） | SPC n C         |
+| C-c C-x C-j | 跳转到打卡任务的标题   |                 |
+
+** Capture,Refile,Archive 捕获，重新存档，存档
+
+*** Capture
+快速笔记，可以定义模板
+
+**** Setting up capture
+#+begin_example
+(setq org-default-notes-file (concat org-directory "path/to/filename.org"))
+#+end_example
+
+**** Using capture
+| Keybinding      | Action                                             | Doom-Keybinding |
+|-----------------+----------------------------------------------------+-----------------|
+| M-x org-capture | start capture                                      | SPC X           |
+| C-c C-c         | return to before                                   |                 |
+| C-c C-w         | 通过将笔记重新归档到不同的地方来完成捕获                  |                 |
+| C-c C-k         | abort the capture and return to the previous state |                 |
+
+**** Capture templates
+#+begin_src elisp
+(setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "path/to/todo.org" "Tasks")
+            "* TODO %?\n %i\n %a")
+          ("j" "Journal" entry (file+datetree "path/to/journal.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
+#+end_src
+
+动态插入的内容：
+- %a
+  注释，通常是用 org-store-link 创建的连接
+- %i
+  初始内容，调用捕获时的区域
+- %t，%T
+  时间戳
+- %u，%U
+  不活跃的时间戳
+- %？
+  加载模板完成后，光标的位置
+
+
+*** Refile and Copy
+
+将 Capture 的数据重新归档或复制到不同的列表中，例如将 Capture 的数据复制到项目中。
+
+| Keybinding      | Action                                                                    |
+|-----------------+---------------------------------------------------------------------------|
+| C-c C-w         | Refile the entry or region at piont                                       |
+| C-u C-c C-w     | Use the refile interface to jump to a heading                             |
+| C-u C-u C-c C-w | Jump to the location where org-refile last moved a tree to                |
+| C-c M-w         | Copying works like refiling,except that the original note is note deleted |
+
+*** Archiving
+When a project represented by a (sub)tree is finished, you may want to move the tree out of the way and to stop it from contributing to the agenda.
+
+当一个（子）树代表的项目完成时，你可能想把这个树移出并停止它参与议程。
+
+| Keybinding                 | Action                                                  |
+|----------------------------+---------------------------------------------------------|
+| C-c C-x C-a                | 使用变量 org-archive-default-command 中指定的命令归档当前条目 |
+| C-c C-x C-s or short C-c $ | 将子树从光标位置开始归档到 org-archive-location 给定的位置    |
+
+默认存档位置与当前文件位于同一目录，名称是"_archive"与文件名连接而成。
+
+** Agenda Views 议程视图
+
+*** Agenda Files
+| Keybinding     | Action                       |
+|----------------+------------------------------|
+| C-c [          | 将当前文件添加到议程文件列表中    |
+| C-c ]          | 将当前文件移除到议程文件列表中    |
+| C-c ' or C-c , | 循环浏览议程文件列表，依次展示文件 |
+*** The Agenda Dispatcher
+- DOOM-Keybinding
+    : open the agenda dispatcher
+    : SPC o A
+*** The Weekly/Daily Agenda
+时间戳可以触发
+*** The Global TODO List
+SPC o A t or SPC o A T
+
+*** Commands in Agenda Buffer
+- t
+  : 下一行
+- p
+  : 上一行
+- SPC
+  : 在另一个窗口中显示项目的原始位置
+- TAB
+  : 转到项目在另一个窗口中的原始位置
+- RET
+  : 转到项目的原始位置并删除其他窗口
+- o
+  : 删除其他窗口
+- d
+  : 切换到日视图
+- w
+  : 切换到周视图
+- f
+  : 显示进度
+- b
+  : 显示更早的日期
+- .
+  : 今天
+- j
+  : 日期提示，并切换到该日期
+- l
+  : 切换日志模式
+- r
+  : 重新创建缓冲区
+- s
+  : 保存
+
+** Markup for Rich Contents
+
+*** Paragraphs
+Paragraphs are separated by at least one empty line.
+
+Use "\\" at the end of a line to enforce a line break within a paragraph.
+
+Format poetry:
+#+begin_verse
+第一行
+第二行
+    --someone
+#+end_verse
+
+Center:
+#+begin_center
+Hello World!
+#+end_center
+
+*** Emphasis and Monospace 强调和等宽
+#+begin_example
+*bold*
+/italic/
+_unerlined_
+=verbatim=
+~code~
++strike-through+
+#+end_example
+
+*bold*
+/italic/
+_unerlined_
+=verbatim=
+~code~
++strike-through+
+
+*** Embedded LaTeX
+The radius of the sun is R_sun = 6.96 x 10^8 m.  On the other hand,
+the radius of Alpha Centauri is R_{Alpha Centauri} = 1.28 x R_{sun}.
+
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures
+\end{equation}                          % etc
+
+If $a^2=b$ and \( b=2 \), then the solution must be
+either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+*** Literal example
+示例，使用等宽字体,不受标记影响
+#+begin_example
+this is a exmaple
+#+end_example
+
+Here is an example
+    : Some example from a note.org
+    : another line
+*** Images
+图像链接
+    : [[./link/to/image.png]]
+
+定义图片的标题和引用标签
+#+CAPTION: This is the caption for the next image link (or table)
+#+NAME: test
+[[./image.png]]
+
+- Doom-Keybinding: z i
+  toggle the display of image
+*** Creating Footnotes
+脚注的定义
+    : this is a footnotes[fn:1]
+    : ...
+    : [fn:1] I am footnote
+
+| Keybinding           | Action           |
+|----------------------+------------------|
+| C-c C-x f or SPC m f | 脚注的相关操作      |
+| C-c C-c              | 在定义和引用之间跳转 |
+
+** Exporting
+
+*** The Export Dispatcher
+C-c C-e \\
+SPC m e
+*** Export Settings
+#+begin_example
+#+title: this is title
+#+author: default taken from user-full-name
+#+date: a date, fixed, or an Org timestamp
+#+email: default from user-mail-address
+#+LANGUAGE: language code
+#+end_example
+
+*** Table of Contents 目录
+#+begin_example
+#+options: toc:2    (only include two levels in TOC)
+#+options: toc:nil  (no default TOC at all)
+#+end_example
+*** Inculude Files
+#+begin_example
+#+include: "path/to/file" src emacs-lisp
+#+end_example
+第一个参数是文件路径，第二个参数是指定块的类型，第三个参数指定格式化内容的源代码语言。
+
+使用 C-c ' 可以访问包含的文件
+
+*** Comment Lines
+#+begin_example
+# this is comment
+
+#+begin_comment
+this is comment
+#+end_comment
+#+end_example
+
+- C-c ;
+  将标题前加 COMMENT,会注释掉子树
+

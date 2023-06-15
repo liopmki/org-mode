@@ -1,0 +1,1814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-04-26 Wed 16:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>org-note</title>
+<meta name="author" content="oneYang" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">org-note</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd0c7752">1. 使用 doom emacs 中的 org mode</a>
+<ul>
+<li><a href="#org8a20774">1.1. 文档结构和基本语法</a>
+<ul>
+<li><a href="#org93798fa">1.1.1. 标题</a></li>
+<li><a href="#org32682d1">1.1.2. 内容可见性</a></li>
+<li><a href="#org97684a8">1.1.3. 移动</a></li>
+<li><a href="#orga30d8ed">1.1.4. 结构编辑</a></li>
+<li><a href="#orge3ab109">1.1.5. 稀疏树 Sparse Trees</a></li>
+<li><a href="#org54da20d">1.1.6. 普通列表 Plain Lists</a></li>
+</ul>
+</li>
+<li><a href="#orgd888f81">1.2. 表格 table</a>
+<ul>
+<li><a href="#org569cb4b">1.2.1. Intro</a></li>
+<li><a href="#org26a0b5f">1.2.2. 创建表格和移动单元格</a></li>
+<li><a href="#org100dafb">1.2.3. 列操作</a></li>
+<li><a href="#org01cae22">1.2.4. 行操作</a></li>
+<li><a href="#org1e94cd6">1.2.5. 表格排序</a></li>
+</ul>
+</li>
+<li><a href="#org63e1944">1.3. 链接 Hyperlinks</a>
+<ul>
+<li><a href="#org2cf4794">1.3.1. 两种基本的连接形式</a></li>
+<li><a href="#org813a146">1.3.2. 内部链接</a></li>
+<li><a href="#org6ae92a6">1.3.3. 外部链接</a></li>
+<li><a href="#orgf3e41a2">1.3.4. 处理链接</a></li>
+</ul>
+</li>
+<li><a href="#org19aacf9">1.4. 待办 TODO Items</a>
+<ul>
+<li><a href="#orgc1d7c60">1.4.1. 基本 TODO 功能</a></li>
+<li><a href="#org7bcd95f">1.4.2. 多状态工作流</a></li>
+<li><a href="#orgb078137">1.4.3. 进度日志记录</a></li>
+<li><a href="#org8b220aa">1.4.4. 优先级</a></li>
+<li><a href="#orgb06cbd7">1.4.5. 将任务分解成子任务</a></li>
+<li><a href="#org5428f59">1.4.6. 复选框</a></li>
+</ul>
+</li>
+<li><a href="#orgcfda262">1.5. 标签 Tags</a>
+<ul>
+<li><a href="#org76fef6c">1.5.1. 标签的形式</a></li>
+<li><a href="#org2a8716f">1.5.2. 标签的继承</a></li>
+<li><a href="#org1dff27f">1.5.3. 设置标签&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Keybndings">Keybndings</span></span></a></li>
+<li><a href="#org1067427">1.5.4. 标签组</a></li>
+<li><a href="#org01df5a6">1.5.5. 搜索标签</a></li>
+</ul>
+</li>
+<li><a href="#org0b2ef36">1.6. 属性 Properties</a>
+<ul>
+<li><a href="#orgdf1a2e8">1.6.1. Intro</a></li>
+<li><a href="#orge67a150">1.6.2. Keybinding</a></li>
+</ul>
+</li>
+<li><a href="#orgcd3a7b4">1.7. 日期和时间 Dates and Times</a>
+<ul>
+<li><a href="#orgf6c35ef">1.7.1. 时间戳 Timestamps</a></li>
+<li><a href="#orga077959">1.7.2. 创建时间戳 Creating Timestamps</a></li>
+<li><a href="#org41d849e">1.7.3. 截止日期和日程安排 Deadlines and Scheduling</a></li>
+<li><a href="#org0dad9a7">1.7.4. Clocking Work Time</a></li>
+</ul>
+</li>
+<li><a href="#org75ca7a5">1.8. Capture,Refile,Archive 捕获，重新存档，存档</a>
+<ul>
+<li><a href="#org3034dca">1.8.1. Capture</a></li>
+<li><a href="#org1b24af5">1.8.2. Refile and Copy</a></li>
+<li><a href="#org67360e2">1.8.3. Archiving</a></li>
+</ul>
+</li>
+<li><a href="#org8b9a11b">1.9. Agenda Views 议程视图</a>
+<ul>
+<li><a href="#org22eadf8">1.9.1. Agenda Files</a></li>
+<li><a href="#orgcadbb9c">1.9.2. The Agenda Dispatcher</a></li>
+<li><a href="#org676f95d">1.9.3. The Weekly/Daily Agenda</a></li>
+<li><a href="#org047c87a">1.9.4. The Global TODO List</a></li>
+<li><a href="#orgd216665">1.9.5. Commands in Agenda Buffer</a></li>
+</ul>
+</li>
+<li><a href="#orgb5f3ffa">1.10. Markup for Rich Contents</a>
+<ul>
+<li><a href="#org6f163c4">1.10.1. Paragraphs</a></li>
+<li><a href="#org64ddd4a">1.10.2. Emphasis and Monospace 强调和等宽</a></li>
+<li><a href="#org55491ec">1.10.3. Embedded LaTeX</a></li>
+<li><a href="#org7da60b1">1.10.4. Literal example</a></li>
+<li><a href="#org76a4f81">1.10.5. Images</a></li>
+<li><a href="#org34622fc">1.10.6. Creating Footnotes</a></li>
+</ul>
+</li>
+<li><a href="#org348e32c">1.11. Exporting</a>
+<ul>
+<li><a href="#org1696abc">1.11.1. The Export Dispatcher</a></li>
+<li><a href="#org9173c94">1.11.2. Export Settings</a></li>
+<li><a href="#org7e7cb6b">1.11.3. Table of Contents 目录</a></li>
+<li><a href="#orgde3a2c9">1.11.4. Inculude Files</a></li>
+<li><a href="#org4f305c8">1.11.5. Comment Lines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>
+Org Mode compact guide  <br />
+Org Mode Version: 9.6
+</p>
+</blockquote>
+
+<div id="outline-container-orgd0c7752" class="outline-2">
+<h2 id="orgd0c7752"><span class="section-number-2">1.</span> 使用 doom emacs 中的 org mode</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8a20774" class="outline-3">
+<h3 id="org8a20774"><span class="section-number-3">1.1.</span> 文档结构和基本语法</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org93798fa" class="outline-4">
+<h4 id="org93798fa"><span class="section-number-4">1.1.1.</span> 标题</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+使用 * 区分标题层级
+</p>
+</div>
+</div>
+<div id="outline-container-org32682d1" class="outline-4">
+<h4 id="org32682d1"><span class="section-number-4">1.1.2.</span> 内容可见性</h4>
+<div class="outline-text-4" id="text-1-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgedcefd8"></a>子树循环<br />
+<div class="outline-text-5" id="text-1-1-2-1">
+<p>
+使用 TAB 控制子树的状态
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">,-&gt; FOLDED -&gt; CHILDREN -&gt; SUBTREE --.
+'-----------------------------------'
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org4ba7ace"></a>全局循环<br />
+<div class="outline-text-5" id="text-1-1-2-2">
+<p>
+使用 S-TAB 控制整个 Buffer 的状态
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">,-&gt; OVERVIEW -&gt; CONTENTS -&gt; SHOW ALL --.
+'--------------------------------------'
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org737083b"></a>控制默认的显示状态<br />
+<div class="outline-text-5" id="text-1-1-2-3">
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #84888b;">#+startup: overview</span>
+<span style="color: #9ca0a4;"># overview, content, showall, showeveryting, show&lt;n&gt;levels</span>
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org97684a8" class="outline-4">
+<h4 id="org97684a8"><span class="section-number-4">1.1.3.</span> 移动</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Doom-Keybinding</th>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-n</td>
+<td class="org-left">下一个标题</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-p</td>
+<td class="org-left">上一个标题</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-f</td>
+<td class="org-left">下一个同级标题</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-b</td>
+<td class="org-left">上一个同级标题</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-u</td>
+<td class="org-left">回到更高级别的标题</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orga30d8ed" class="outline-4">
+<h4 id="orga30d8ed"><span class="section-number-4">1.1.4.</span> 结构编辑</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Doom-Keybinding</th>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-RET</td>
+<td class="org-left">插入同级标题或列表项</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-S-RET</td>
+<td class="org-left">插入同级 TODO</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-Left / M-Right</td>
+<td class="org-left">标题升级 / 降级</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-Up / M-Down</td>
+<td class="org-left">向上 / 向下移动子树</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-w</td>
+<td class="org-left">将条目或区域重新归档到不同的位置(标题下的内容会移动到选择的位置并降级)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-x n s / C-x n w</td>
+<td class="org-left">缩小子树和展开子树</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orge3ab109" class="outline-4">
+<h4 id="orge3ab109"><span class="section-number-4">1.1.5.</span> 稀疏树 Sparse Trees</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<blockquote>
+<p>
+在大纲树中选中信息构建稀疏树，从而尽可能折叠整个文档，但选中的信息连通其上方的标题结构一起可见。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>C-c /
+提示输入一个额外的键来选择稀疏树的创建命令</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org54da20d" class="outline-4">
+<h4 id="org54da20d"><span class="section-number-4">1.1.6.</span> 普通列表 Plain Lists</h4>
+<div class="outline-text-4" id="text-1-1-6">
+</div>
+<ol class="org-ol">
+<li><a id="orge21c082"></a>3 种列表<br />
+<div class="outline-text-5" id="text-1-1-6-1">
+<ul class="org-ul">
+<li>无序列表以 &ldquo;-&rdquo;, &ldquo;+&rdquo;, &ldquo;*&rdquo; 开头</li>
+<li>有序列表以 &ldquo;1.&rdquo;, &ldquo;1)&rdquo; 开头</li>
+<li>描述列表以 &ldquo;::&rdquo; 将术语与描述分开
+example: aaa :: bbb</li>
+</ul>
+</div>
+</li>
+<li><a id="org41ae4eb"></a>列表操作<br />
+<div class="outline-text-5" id="text-1-1-6-2">
+<ul class="org-ul">
+<li>列表内容可以用 TAB 来显示和折叠</li>
+<li>M-RET
+插入新项目</li>
+<li>M-S-RET
+插入有复选框的新项目</li>
+<li>M-S-Up / M-S-Down
+向上 / 向下移动项目包括子项目</li>
+<li>M-Left / M-Right
+减少和增加缩进</li>
+<li>M-S-Left / M-S-Right
+减少和增加缩进包括子项目</li>
+<li>C-c C-c
+切换复选框的状态</li>
+<li>C-c -
+循环切换列表使用的符号</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd888f81" class="outline-3">
+<h3 id="orgd888f81"><span class="section-number-3">1.2.</span> 表格 table</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org569cb4b" class="outline-4">
+<h4 id="org569cb4b"><span class="section-number-4">1.2.1.</span> Intro</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+在表格中使用 TAB or RET or C-c C-c
+可以重新对齐表格
+</p>
+
+<p>
+完成表格的第一行后 C-c RET 即可创建表格
+</p>
+</div>
+</div>
+<div id="outline-container-org26a0b5f" class="outline-4">
+<h4 id="org26a0b5f"><span class="section-number-4">1.2.2.</span> 创建表格和移动单元格</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>C-c |
+可以创建表格也可以将符合标准的内容转换成表格</li>
+<li>S-Up / Down / Left / Right
+移动单元格（通过交换相邻两个单元格）</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org100dafb" class="outline-4">
+<h4 id="org100dafb"><span class="section-number-4">1.2.3.</span> 列操作</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>M-Left,M-Right
+向左，向右移动当前列</li>
+<li>M-S-Left
+Kill the current column</li>
+<li>M-S-Right
+在左侧插入一个新列</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org01cae22" class="outline-4">
+<h4 id="org01cae22"><span class="section-number-4">1.2.4.</span> 行操作</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>M-Up, M-Down
+向上，向下移动当前行</li>
+<li>M-S-Up
+Kill the current row or horizontal line</li>
+<li>M-S-Down
+在上方插入新行</li>
+<li>C-c -
+在下方插入水平线</li>
+<li>C-c RET
+在下方插入水平线,并将光标移动到水平线下方</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1e94cd6" class="outline-4">
+<h4 id="org1e94cd6"><span class="section-number-4">1.2.5.</span> 表格排序</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<ul class="org-ul">
+<li>C-c ^</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org63e1944" class="outline-3">
+<h3 id="org63e1944"><span class="section-number-3">1.3.</span> 链接 Hyperlinks</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org2cf4794" class="outline-4">
+<h4 id="org2cf4794"><span class="section-number-4">1.3.1.</span> 两种基本的连接形式</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #4078f2; font-weight: bold; text-decoration: underline;"><a href="LINK">DESCRIPTION</a></span>
+or
+<span style="color: #4078f2; font-weight: bold; text-decoration: underline;"><a href="LINK">LINK</a></span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org813a146" class="outline-4">
+<h4 id="org813a146"><span class="section-number-4">1.3.2.</span> 内部链接</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ol class="org-ol">
+<li><p>
+第一种
+</p>
+<div class="org-src-container">
+<pre class="src src-org">    <span style="color: #4078f2; font-weight: bold; text-decoration: underline;"><a href="#my-custom-id">#my-custom-id</a></span>
+    &#36825;&#20010;&#38142;&#25509; --&gt; "CUSTOM_ID"&#23646;&#24615;&#20026; my-custom-id &#30340;&#26631;&#39064;
+</pre>
+</div></li>
+<li><p>
+第二种
+</p>
+<div class="org-src-container">
+<pre class="src src-org">   <span style="color: #4078f2; font-weight: bold; text-decoration: underline;"><a href="target">target</a></span> or <span style="color: #4078f2; font-weight: bold; text-decoration: underline;"><a href="target">Click to target</a></span>
+   --&gt; <span style="text-decoration: underline;">&lt;&lt;target&gt;&gt;</span>
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6ae92a6" class="outline-4">
+<h4 id="org6ae92a6"><span class="section-number-4">1.3.3.</span> 外部链接</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<pre class="example" id="org733745c">
+‘http://www.astro.uva.nl/=dominik’	    on the web
+‘file:/home/dominik/images/jupiter.jpg’	file, absolute path
+‘/home/dominik/images/jupiter.jpg’	    same as above
+‘file:papers/last.pdf’	                file, relative path
+‘./papers/last.pdf’	                    same as above
+‘file:projects.org’	                    another Org file
+‘docview:papers/last.pdf::NNN’	        open in DocView mode at page NNN
+‘id:B7423F4D-2E8A-471B-8810-C40F074717E9’	link to heading by ID
+‘news:comp.emacs’	                        Usenet link
+‘mailto:adent@galaxy.net’	                mail link
+‘mhe:folder#id’	                        MH-E message link
+‘rmail:folder#id’	                        Rmail message link
+‘gnus:group#id’	                        Gnus article link
+‘bbdb:R.*Stallman’	                    BBDB link (with regexp)
+‘irc:/irc.com/#emacs/bob’	                IRC link
+‘info:org#Hyperlinks’	                    Info node link
+
+‘file:~/code/main.c::255’	                Find line 255
+‘file:~/xx.org::My Target’	            Find ‘&lt;&lt;My Target&gt;&gt;’
+‘[[file:~/xx.org::#my-custom-id]]’	        Find entry with a custom ID
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf3e41a2" class="outline-4">
+<h4 id="orgf3e41a2"><span class="section-number-4">1.3.4.</span> 处理链接</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<ul class="org-ul">
+<li>C-c C-l
+编辑链接插入链接</li>
+<li>C-c C-o
+打开链接</li>
+<li>C-c &amp;
+跳回记录点记录点使用 C-c % 标记</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19aacf9" class="outline-3">
+<h3 id="org19aacf9"><span class="section-number-3">1.4.</span> 待办 TODO Items</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgc1d7c60" class="outline-4">
+<h4 id="orgc1d7c60"><span class="section-number-4">1.4.1.</span> 基本 TODO 功能</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+以 TODO 开头的标题是一个 TODO
+</p>
+
+<ul class="org-ul">
+<li>C-c C-t
+选择 TODO 状态</li>
+<li>S-Right,S-Left
+切换 TODO 状态</li>
+<li>C-c | t
+查看稀疏树中的 TODO</li>
+<li>M-x org-agenda t
+全局 TODO List</li>
+<li>S-M-RET
+插入新 TODO</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7bcd95f" class="outline-4">
+<h4 id="org7bcd95f"><span class="section-number-4">1.4.2.</span> 多状态工作流</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+doom-emacs 默认
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb078137" class="outline-4">
+<h4 id="orgb078137"><span class="section-number-4">1.4.3.</span> 进度日志记录</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+当任务变化时，进行的操作
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgb3e226a"></a>任务完成 DONE<br />
+<div class="outline-text-5" id="text-1-4-3-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #4078f2;">(</span><span style="color: #e45649;">setq</span> <span style="color: #6a1868;">org-log-done</span> <span style="color: #4078f2;">'</span><span style="color: #986801;">time</span><span style="color: #4078f2;">)</span> <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">&#20219;&#21153;&#20026;DONE&#26102;&#65292;&#28155;&#21152;&#19968;&#20010;"CLOSED:[timestamp]"</span>
+<span style="color: #4078f2;">(</span><span style="color: #e45649;">setq</span> <span style="color: #6a1868;">org-log-done</span> <span style="color: #4078f2;">'</span><span style="color: #986801;">note</span><span style="color: #4078f2;">)</span> <span style="color: #9ca0a4;">; </span><span style="color: #9ca0a4;">&#20219;&#21153;&#20026;DONE&#26102;&#65292;&#28155;&#21152;&#19968;&#20010;"CLOSED:[timestamp]" &#21644; note</span>
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org9aba727"></a>跟踪 TODO 状态变化<br />
+<div class="outline-text-5" id="text-1-4-3-2">
+<pre class="example" id="orgff2bfb7">
+#+TODO: TODO(t) WAIT(W@/!) | DONE(d!) CANCELED(c@)
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">标记</th>
+<th scope="col" class="org-left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&ldquo;!&rdquo;</td>
+<td class="org-left">时间戳</td>
+</tr>
+
+<tr>
+<td class="org-left">&ldquo;@&rdquo;</td>
+<td class="org-left">note</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org8b220aa" class="outline-4">
+<h4 id="org8b220aa"><span class="section-number-4">1.4.4.</span> 优先级</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+org 有 3 个优先级 A B C
+B 是默认值
+</p>
+
+<ul class="org-ul">
+<li>C-c ,
+设置优先级</li>
+<li>S-Up, S-Down
+增加,减少优先级</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb06cbd7" class="outline-4">
+<h4 id="orgb06cbd7"><span class="section-number-4">1.4.5.</span> 将任务分解成子任务</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<p>
+在标题后面添加 &ldquo;<code>[/]</code>&rdquo; &ldquo;<code>[%]</code>&rdquo;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5428f59" class="outline-4">
+<h4 id="org5428f59"><span class="section-number-4">1.4.6.</span> 复选框</h4>
+<div class="outline-text-4" id="text-1-4-6">
+<ul class="org-ul">
+<li>M-S-RET
+insert checkbox</li>
+<li>C-c C-c
+toggle checkbox status</li>
+
+<li class="trans"><code>[-]</code> item1<code>[1/3]</code>
+<ul class="org-ul">
+<li class="trans"><code>[-]</code> item1-1 <code>[50%]</code>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> item1-1-1</li>
+<li class="on"><code>[X]</code> item1-1-2</li>
+</ul></li>
+<li class="on"><code>[X]</code> item1-2</li>
+<li class="off"><code>[&#xa0;]</code> item1-3</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcfda262" class="outline-3">
+<h3 id="orgcfda262"><span class="section-number-3">1.5.</span> 标签 Tags</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org76fef6c" class="outline-4">
+<h4 id="org76fef6c"><span class="section-number-4">1.5.1.</span> 标签的形式</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+每个标题都可以有一个标签列表
+</p>
+
+<p>
+标签包含字母,数字,下划线，@
+</p>
+
+<pre class="example" id="org756a831">
+:work:
+
+:work:urgent:
+</pre>
+</div>
+</div>
+<div id="outline-container-org2a8716f" class="outline-4">
+<h4 id="org2a8716f"><span class="section-number-4">1.5.2.</span> 标签的继承</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<ol class="org-ol">
+<li>子标题会继承父标题的 Tags</li>
+<li><p>
+设置文件中所有标题都继承的 Tags
+</p>
+<pre class="example" id="orgd4c835e">
+   #+FILETAGS: :Peter:Boss:Secret:
+</pre></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1dff27f" class="outline-4">
+<h4 id="org1dff27f"><span class="section-number-4">1.5.3.</span> 设置标签&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Keybndings">Keybndings</span></span></h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li>C-c C-q
+插入标签</li>
+<li>C-c C-c
+同上,但需要焦点在标题上</li>
+</ul>
+
+<p>
+设置默认的标签列表：
+</p>
+<pre class="example" id="orgb612109">
+#+TAGS: @work @home
+#+TAGS: laptop car pc sailboat
+#+TAGS: @work(w) @home(h) laptop(l) pc(p)
+</pre>
+</div>
+</div>
+<div id="outline-container-org1067427" class="outline-4">
+<h4 id="org1067427"><span class="section-number-4">1.5.4.</span> 标签组</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<pre class="example" id="orge015631">
+#+TAGS: [ GTD : Control Persp ]
+#+TAGS: { Context : @Home @Work }
+</pre>
+</div>
+</div>
+<div id="outline-container-org01df5a6" class="outline-4">
+<h4 id="org01df5a6"><span class="section-number-4">1.5.5.</span> 搜索标签</h4>
+<div class="outline-text-4" id="text-1-5-5">
+<ul class="org-ul">
+<li>C-c | m or C-c |
+创建一个稀疏树，其中所有标题都匹配标签搜索。使用前缀参数，忽略不是 TODO 的标题</li>
+<li>M-x org-agenda m
+从所有议程文件（agenda files）中创建标签匹配的全局列表</li>
+<li>M-x org-agenda M
+从所有议程文件中创建标签匹配的全局列表，但仅检查 TODO 项目并强制检查子项目</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b2ef36" class="outline-3">
+<h3 id="org0b2ef36"><span class="section-number-3">1.6.</span> 属性 Properties</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-orgdf1a2e8" class="outline-4">
+<h4 id="orgdf1a2e8"><span class="section-number-4">1.6.1.</span> Intro</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+:属性 1:    66666666
+</p>
+<pre class="example" id="orgc682611">
+    :PROPERTIES:
+    :Title:     Goldberg Variations
+    :Composer:  J.S. Bach
+    :Publisher: Deutsche Grammophon
+    :NDisks:    1
+    :END:
+</pre>
+
+<p>
+可以定义 Xyz<sub>ALL</sub> 来定义 Xyz 的允许值
+</p>
+
+<p>
+设置可以被文件中的任何标题继承的属性:
+</p>
+<pre class="example" id="org74abdb5">
+#+PROPERTY: NDisks_ALL 1 2 3 4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge67a150" class="outline-4">
+<h4 id="orge67a150"><span class="section-number-4">1.6.2.</span> Keybinding</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+:属性 1:    66666666
+</p>
+<ul class="org-ul">
+<li>C-c C-x p or SPC m o
+设置属性</li>
+<li>C-c C-c d
+从当前标题中删除属性</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd3a7b4" class="outline-3">
+<h3 id="orgcd3a7b4"><span class="section-number-3">1.7.</span> 日期和时间 Dates and Times</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-orgf6c35ef" class="outline-4">
+<h4 id="orgf6c35ef"><span class="section-number-4">1.7.1.</span> 时间戳 Timestamps</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+时间戳
+</p>
+<pre class="example" id="org8c29b86">
+&lt;2003-09-16 Tue&gt; or &lt;2003-09-16 Tue 09:39&gt; or &lt;2003-09-16 Tue 12:00-12:30&gt;
+</pre>
+</div>
+
+<ol class="org-ol">
+<li><a id="org3e58864"></a>普通时间戳<br />
+<div class="outline-text-5" id="text-1-7-1-1">
+<p>
+一个简单的时间戳只是为一个项目分配一个日期/时间。
+</p>
+</div>
+</li>
+
+<li><a id="org8feaed6"></a>有重复间隔的时间戳<br />
+<div class="outline-text-5" id="text-1-7-1-2">
+<pre class="example" id="org7c640b6">
+&lt;2007-05-16 Wed 12:30 +1w&gt;
+</pre>
+<p>
+在特定间隔后仍然应用
+</p>
+
+<p>
+间隔：
+</p>
+<ul class="org-ul">
+<li>d
+days</li>
+<li>w
+weeks</li>
+<li>m
+months</li>
+<li>y
+years</li>
+</ul>
+</div>
+</li>
+
+<li><a id="orgb500aea"></a>日记式的格式 Diary-style expression entries<br />
+<div class="outline-text-5" id="text-1-7-1-3">
+<p>
+对于更复杂的日期范围，Org mode 支持在 emacs 日历中实现特殊表达式日记条目。例如，可选时间：
+</p>
+<pre class="example" id="org1e154b7">
+    *  22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+        &lt;%%(diary-float t 4 2)&gt;
+</pre>
+</div>
+</li>
+
+<li><a id="org9aded6d"></a>时间范围<br />
+<div class="outline-text-5" id="text-1-7-1-4">
+<p>
+由 “&#x2013;” 连接的两个时间戳表示一个范围
+</p>
+</div>
+</li>
+
+<li><a id="org152651e"></a>非活动时间戳<br />
+<div class="outline-text-5" id="text-1-7-1-5">
+<p>
+使用方括号包裹时间戳，这些时间戳不会触发
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orga077959" class="outline-4">
+<h4 id="orga077959"><span class="section-number-4">1.7.2.</span> 创建时间戳 Creating Timestamps</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c .</td>
+<td class="org-left">插入时间戳，修改时间戳，使用两次添加时间范围</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c !</td>
+<td class="org-left">和上一条一样，但是插入的是不活跃的时间戳</td>
+</tr>
+
+<tr>
+<td class="org-left">S-Left,S-Right</td>
+<td class="org-left">将日期更改一天</td>
+</tr>
+
+<tr>
+<td class="org-left">S-Up,S-Down</td>
+<td class="org-left">在尖括号处，更改时间戳类型；在时间戳中，更改年、月、日等</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org41d849e" class="outline-4">
+<h4 id="org41d849e"><span class="section-number-4">1.7.3.</span> 截止日期和日程安排 Deadlines and Scheduling</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-d</td>
+<td class="org-left">插入 Deadline 和时间戳(预计的项目截止时间)</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-s</td>
+<td class="org-left">插入 Scheduled 和时间戳(预计的项目开始时间)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org0dad9a7" class="outline-4">
+<h4 id="org0dad9a7"><span class="section-number-4">1.7.4.</span> Clocking Work Time</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<p>
+工作时间计时
+</p>
+
+<p>
+记录的是从开始时间到结束时间
+</p>
+<ul class="org-ul">
+<li>clock-in
+开始计时（签到）</li>
+<li>clock-out
+停止计时（下班）</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+<th scope="col" class="org-left">Doom-Keybinding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x C-i</td>
+<td class="org-left">开始计时（签到）</td>
+<td class="org-left">SPC m c i</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-o</td>
+<td class="org-left">停止计时（下班）</td>
+<td class="org-left">SPC m c o</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-e</td>
+<td class="org-left">更新工作量估计</td>
+<td class="org-left">SPC m c e</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-q</td>
+<td class="org-left">取消时钟（开始计时后）</td>
+<td class="org-left">SPC n C</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-j</td>
+<td class="org-left">跳转到打卡任务的标题</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75ca7a5" class="outline-3">
+<h3 id="org75ca7a5"><span class="section-number-3">1.8.</span> Capture,Refile,Archive 捕获，重新存档，存档</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org3034dca" class="outline-4">
+<h4 id="org3034dca"><span class="section-number-4">1.8.1.</span> Capture</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+快速笔记，可以定义模板
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgef5ecf6"></a>Setting up capture<br />
+<div class="outline-text-5" id="text-1-8-1-1">
+<pre class="example" id="org8e9db5a">
+(setq org-default-notes-file (concat org-directory "path/to/filename.org"))
+</pre>
+</div>
+</li>
+
+<li><a id="orge23e5f0"></a>Using capture<br />
+<div class="outline-text-5" id="text-1-8-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+<th scope="col" class="org-left">Doom-Keybinding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">M-x org-capture</td>
+<td class="org-left">start capture</td>
+<td class="org-left">SPC X</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-c</td>
+<td class="org-left">return to before</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-w</td>
+<td class="org-left">通过将笔记重新归档到不同的地方来完成捕获</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-k</td>
+<td class="org-left">abort the capture and return to the previous state</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="org2ea4f8d"></a>Capture templates<br />
+<div class="outline-text-5" id="text-1-8-1-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #4078f2;">(</span><span style="color: #e45649;">setq</span> org-capture-templates
+        <span style="color: #4078f2;">'</span><span style="color: #a626a4;">(</span><span style="color: #50a14f;">(</span><span style="color: #50a14f;">"t"</span> <span style="color: #50a14f;">"Todo"</span> entry <span style="color: #b751b6;">(</span>file+headline <span style="color: #50a14f;">"path/to/todo.org"</span> <span style="color: #50a14f;">"Tasks"</span><span style="color: #b751b6;">)</span>
+            <span style="color: #50a14f;">"* </span><span style="color: #986801; font-weight: bold;">TODO</span><span style="color: #50a14f;"> %?\n %i\n %a"</span><span style="color: #50a14f;">)</span>
+          <span style="color: #50a14f;">(</span><span style="color: #50a14f;">"j"</span> <span style="color: #50a14f;">"Journal"</span> entry <span style="color: #b751b6;">(</span>file+datetree <span style="color: #50a14f;">"path/to/journal.org"</span><span style="color: #b751b6;">)</span>
+           <span style="color: #50a14f;">"* %?\nEntered on %U\n  %i\n  %a"</span><span style="color: #50a14f;">)</span><span style="color: #a626a4;">)</span><span style="color: #4078f2;">)</span>
+</pre>
+</div>
+
+<p>
+动态插入的内容：
+</p>
+<ul class="org-ul">
+<li>%a
+注释，通常是用 org-store-link 创建的连接</li>
+<li>%i
+初始内容，调用捕获时的区域</li>
+<li>%t，%T
+时间戳</li>
+<li>%u，%U
+不活跃的时间戳</li>
+<li>%？加载模板完成后，光标的位置</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-org1b24af5" class="outline-4">
+<h4 id="org1b24af5"><span class="section-number-4">1.8.2.</span> Refile and Copy</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+将 Capture 的数据重新归档或复制到不同的列表中，例如将 Capture 的数据复制到项目中。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-w</td>
+<td class="org-left">Refile the entry or region at piont</td>
+</tr>
+
+<tr>
+<td class="org-left">C-u C-c C-w</td>
+<td class="org-left">Use the refile interface to jump to a heading</td>
+</tr>
+
+<tr>
+<td class="org-left">C-u C-u C-c C-w</td>
+<td class="org-left">Jump to the location where org-refile last moved a tree to</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c M-w</td>
+<td class="org-left">Copying works like refiling,except that the original note is note deleted</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org67360e2" class="outline-4">
+<h4 id="org67360e2"><span class="section-number-4">1.8.3.</span> Archiving</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+When a project represented by a (sub)tree is finished, you may want to move the tree out of the way and to stop it from contributing to the agenda.
+</p>
+
+<p>
+当一个（子）树代表的项目完成时，你可能想把这个树移出并停止它参与议程。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x C-a</td>
+<td class="org-left">使用变量 org-archive-default-command 中指定的命令归档当前条目</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-x C-s or short C-c $</td>
+<td class="org-left">将子树从光标位置开始归档到 org-archive-location 给定的位置</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+默认存档位置与当前文件位于同一目录，名称是&ldquo;<sub>archive</sub>&rdquo;与文件名连接而成。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b9a11b" class="outline-3">
+<h3 id="org8b9a11b"><span class="section-number-3">1.9.</span> Agenda Views 议程视图</h3>
+<div class="outline-text-3" id="text-1-9">
+</div>
+<div id="outline-container-org22eadf8" class="outline-4">
+<h4 id="org22eadf8"><span class="section-number-4">1.9.1.</span> Agenda Files</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c [</td>
+<td class="org-left">将当前文件添加到议程文件列表中</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c ]</td>
+<td class="org-left">将当前文件移除到议程文件列表中</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c &rsquo; or C-c ,</td>
+<td class="org-left">循环浏览议程文件列表，依次展示文件</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgcadbb9c" class="outline-4">
+<h4 id="orgcadbb9c"><span class="section-number-4">1.9.2.</span> The Agenda Dispatcher</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<ul class="org-ul">
+<li><p>
+DOOM-Keybinding
+</p>
+<pre class="example">
+open the agenda dispatcher
+SPC o A
+</pre></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org676f95d" class="outline-4">
+<h4 id="org676f95d"><span class="section-number-4">1.9.3.</span> The Weekly/Daily Agenda</h4>
+<div class="outline-text-4" id="text-1-9-3">
+<p>
+时间戳可以触发
+</p>
+</div>
+</div>
+<div id="outline-container-org047c87a" class="outline-4">
+<h4 id="org047c87a"><span class="section-number-4">1.9.4.</span> The Global TODO List</h4>
+<div class="outline-text-4" id="text-1-9-4">
+<p>
+SPC o A t or SPC o A T
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd216665" class="outline-4">
+<h4 id="orgd216665"><span class="section-number-4">1.9.5.</span> Commands in Agenda Buffer</h4>
+<div class="outline-text-4" id="text-1-9-5">
+<ul class="org-ul">
+<li><p>
+t
+</p>
+<pre class="example">
+下一行
+</pre></li>
+<li><p>
+p
+</p>
+<pre class="example">
+上一行
+</pre></li>
+<li><p>
+SPC
+</p>
+<pre class="example">
+在另一个窗口中显示项目的原始位置
+</pre></li>
+<li><p>
+TAB
+</p>
+<pre class="example">
+转到项目在另一个窗口中的原始位置
+</pre></li>
+<li><p>
+RET
+</p>
+<pre class="example">
+转到项目的原始位置并删除其他窗口
+</pre></li>
+<li><p>
+o
+</p>
+<pre class="example">
+删除其他窗口
+</pre></li>
+<li><p>
+d
+</p>
+<pre class="example">
+切换到日视图
+</pre></li>
+<li><p>
+w
+</p>
+<pre class="example">
+切换到周视图
+</pre></li>
+<li><p>
+f
+</p>
+<pre class="example">
+显示进度
+</pre></li>
+<li><p>
+b
+</p>
+<pre class="example">
+显示更早的日期
+</pre></li>
+<li><p>
+.
+</p>
+<pre class="example">
+今天
+</pre></li>
+<li><p>
+j
+</p>
+<pre class="example">
+日期提示，并切换到该日期
+</pre></li>
+<li><p>
+l
+</p>
+<pre class="example">
+切换日志模式
+</pre></li>
+<li><p>
+r
+</p>
+<pre class="example">
+重新创建缓冲区
+</pre></li>
+<li><p>
+s
+</p>
+<pre class="example">
+保存
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb5f3ffa" class="outline-3">
+<h3 id="orgb5f3ffa"><span class="section-number-3">1.10.</span> Markup for Rich Contents</h3>
+<div class="outline-text-3" id="text-1-10">
+</div>
+<div id="outline-container-org6f163c4" class="outline-4">
+<h4 id="org6f163c4"><span class="section-number-4">1.10.1.</span> Paragraphs</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<p>
+Paragraphs are separated by at least one empty line.
+</p>
+
+<p>
+Use &ldquo;\\&rdquo; at the end of a line to enforce a line break within a paragraph.
+</p>
+
+<p>
+Format poetry:
+</p>
+<p class="verse">
+第一行<br />
+第二行<br />
+&#xa0;&#xa0;&#xa0;&#xa0;&#x2013;someone<br />
+</p>
+
+<p>
+Center:
+</p>
+<div class="org-center">
+<p>
+Hello World!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64ddd4a" class="outline-4">
+<h4 id="org64ddd4a"><span class="section-number-4">1.10.2.</span> Emphasis and Monospace 强调和等宽</h4>
+<div class="outline-text-4" id="text-1-10-2">
+<pre class="example" id="orga148d4c">
+*bold*
+/italic/
+_unerlined_
+=verbatim=
+~code~
++strike-through+
+</pre>
+
+<p>
+<b>bold</b>
+<i>italic</i>
+<span class="underline">unerlined</span>
+<code>verbatim</code>
+<code>code</code>
+<del>strike-through</del>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org55491ec" class="outline-4">
+<h4 id="org55491ec"><span class="section-number-4">1.10.3.</span> Embedded LaTeX</h4>
+<div class="outline-text-4" id="text-1-10-3">
+<p>
+The radius of the sun is R<sub>sun</sub> = 6.96 x 10<sup>8</sup> m.  On the other hand,
+the radius of Alpha Centauri is R<sub>Alpha Centauri</sub> = 1.28 x R<sub>sun</sub>.
+</p>
+
+<p>
+\begin{equation}                        % arbitrary environments,
+x=\sqrt{b}                              % even tables, figures
+\end{equation}                          % etc
+</p>
+
+<p>
+If \(a^2=b\) and \( b=2 \), then the solution must be
+either \[ a=+\sqrt{2} \] or \[ a=-\sqrt{2} \].
+</p>
+</div>
+</div>
+<div id="outline-container-org7da60b1" class="outline-4">
+<h4 id="org7da60b1"><span class="section-number-4">1.10.4.</span> Literal example</h4>
+<div class="outline-text-4" id="text-1-10-4">
+<p>
+示例，使用等宽字体,不受标记影响
+</p>
+<pre class="example" id="org3a1bbc5">
+this is a exmaple
+</pre>
+
+<p>
+Here is an example
+</p>
+<pre class="example">
+Some example from a note.org
+another line
+</pre>
+</div>
+</div>
+<div id="outline-container-org76a4f81" class="outline-4">
+<h4 id="org76a4f81"><span class="section-number-4">1.10.5.</span> Images</h4>
+<div class="outline-text-4" id="text-1-10-5">
+<p>
+图像链接
+</p>
+<pre class="example">
+[[./link/to/image.png]]
+</pre>
+
+
+<p>
+定义图片的标题和引用标签
+</p>
+
+<div id="org39550f2" class="figure">
+<p><img src="./image.png" alt="image.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>This is the caption for the next image link (or table)</p>
+</div>
+
+<ul class="org-ul">
+<li>Doom-Keybinding: z i
+toggle the display of image</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org34622fc" class="outline-4">
+<h4 id="org34622fc"><span class="section-number-4">1.10.6.</span> Creating Footnotes</h4>
+<div class="outline-text-4" id="text-1-10-6">
+<p>
+脚注的定义
+</p>
+<pre class="example">
+this is a footnotes[fn:1]
+...
+[fn:1] I am footnote
+</pre>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Keybinding</th>
+<th scope="col" class="org-left">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-x f or SPC m f</td>
+<td class="org-left">脚注的相关操作</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-c</td>
+<td class="org-left">在定义和引用之间跳转</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org348e32c" class="outline-3">
+<h3 id="org348e32c"><span class="section-number-3">1.11.</span> Exporting</h3>
+<div class="outline-text-3" id="text-1-11">
+</div>
+<div id="outline-container-org1696abc" class="outline-4">
+<h4 id="org1696abc"><span class="section-number-4">1.11.1.</span> The Export Dispatcher</h4>
+<div class="outline-text-4" id="text-1-11-1">
+<p>
+C-c C-e <br />
+SPC m e
+</p>
+</div>
+</div>
+<div id="outline-container-org9173c94" class="outline-4">
+<h4 id="org9173c94"><span class="section-number-4">1.11.2.</span> Export Settings</h4>
+<div class="outline-text-4" id="text-1-11-2">
+<pre class="example" id="org3fa5d67">
+#+title: this is title
+#+author: default taken from user-full-name
+#+date: a date, fixed, or an Org timestamp
+#+email: default from user-mail-address
+#+LANGUAGE: language code
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7e7cb6b" class="outline-4">
+<h4 id="org7e7cb6b"><span class="section-number-4">1.11.3.</span> Table of Contents 目录</h4>
+<div class="outline-text-4" id="text-1-11-3">
+<pre class="example" id="org70abb9d">
+#+options: toc:2    (only include two levels in TOC)
+#+options: toc:nil  (no default TOC at all)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgde3a2c9" class="outline-4">
+<h4 id="orgde3a2c9"><span class="section-number-4">1.11.4.</span> Inculude Files</h4>
+<div class="outline-text-4" id="text-1-11-4">
+<pre class="example" id="org5ab7efa">
+#+include: "path/to/file" src emacs-lisp
+</pre>
+<p>
+第一个参数是文件路径，第二个参数是指定块的类型，第三个参数指定格式化内容的源代码语言。
+</p>
+
+<p>
+使用 C-c &rsquo; 可以访问包含的文件
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f305c8" class="outline-4">
+<h4 id="org4f305c8"><span class="section-number-4">1.11.5.</span> Comment Lines</h4>
+<div class="outline-text-4" id="text-1-11-5">
+<pre class="example" id="org9dfe781">
+# this is comment
+
+#+begin_comment
+this is comment
+#+end_comment
+</pre>
+
+<ul class="org-ul">
+<li>C-c ;
+将标题前加 COMMENT,会注释掉子树</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2023-04-24 Mon 00:00</p>
+<p class="author">Author: oneYang</p>
+<p class="date">Created: 2023-04-26 Wed 16:16</p>
+</div>
+</body>
+</html>
