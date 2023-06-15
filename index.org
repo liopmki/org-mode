@@ -3,6 +3,8 @@
 
 * Index
 
+[[file:tmp.org][笔记暂存文件]]
+
 * TODO 配置一个适合做笔记的 Emacs
 
 ** TODO 熟悉 Emacs 的基本操作
@@ -33,3 +35,9 @@
 **** TODO 配置 Org-mode 和 org-roam
 
 ** TODO 完成以上内容 Cheat Sheet
+
+- [[file:cheatsheet.org][My Cheat Sheet]]
+
+** 配置笔记
+
+[[file:config-note.org][Config Note]]
