@@ -15,6 +15,7 @@
 ** 改键
 目前不需要
 
+
 ** 几个内置功能
 
 *** 获取帮助
@@ -32,6 +33,7 @@
 *** 关闭欢迎界面
 
 (setq inhibit-startup-screen t)
+
 
 ** Elisp and Org-mode
 
@@ -87,7 +89,27 @@ C-x C-e 执行某行 Lisp 代码
 
 星号 tab
 
+*** 优化鼠标滚轮
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+
+*** 字体
+
+(add-to-list 'default-frame-alist '(font . "LXGW WenKai Mono-14" ))
+(set-face-attribute 'default t :font "LXGW WenKai Mono-14") ;; font size
+
+
 ** 插件
+
+*** package
+;; [ init package ]
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+;;防止反复调用 package-refresh-contents 会影响加载速度
+(when (not package-archive-contents)
+  (package-refresh-contents))
+;; [ end init package ]
 
 *** company
 
@@ -99,9 +121,41 @@ search company
 
 Tips: 使用 M-x find-function 可以查看 company 的源码
 
-*** 字体大小
+(package-install 'company)
+(global-company-mode 1)
+(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
 
-(set-face-attribute 'default nil :height 140)
+*** vertico
 
+;; vertico mini buffer 补全
+(package-install 'vertico)
+(vertico-mode t)
 
-到第5天
+*** marginalia
+
+;; marginalia 显示命令的信息 文件的信息
+(package-install 'marginalia)
+(marginalia-mode t)
+
+*** embark
+
+;; embark  触发对变量的action
+(package-install 'embark)
+(global-set-key (kbd "C-'") 'embark-act) ; 触发 action
+(setq prefix-help-command 'embark-prefix-help-command) ; 会显示快捷键
+
+*** consult
+
+;; consult 搜索增强
+(package-install 'consult)
+(global-set-key (kbd "C-s") 'consult-line)
+
+*** valign
+
+;; Valign Org-mode 表格对齐
+(package-install 'valign)
+(add-hook 'org-mode-hook #'valign-mode)
+
