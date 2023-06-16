@@ -65,7 +65,7 @@
 
 *** 设置光标样式
 
-(setq cursor-type '(bar . 3))
+(setq-default cursor-type '(bar . 3))
 
 *** 查看快捷键
 
@@ -158,4 +158,58 @@ Tips: 使用 M-x find-function 可以查看 company 的源码
 ;; Valign Org-mode 表格对齐
 (package-install 'valign)
 (add-hook 'org-mode-hook #'valign-mode)
+
+*** embark-consult
+
+批量搜索替换
+
+#+begin_src
+  (package-install 'embark-consult)
+(package-install 'wgrep)  ;; wgrep
+(setq wgrep-auto-save-buffer t)
+(eval-after-load 'consult
+  '(eval-after-load 'embark
+     '(progn
+	(require 'embark-consult)
+	(add-hook
+	 'embark-collect-mode-hook
+	 #'consult-preview-at-point-mode))))
+(defun embark-export-write ()
+  (interactive)
+  (require 'embark)
+  (require 'wgrep)
+  (pcase-let ((`(,type . ,candidates)
+	       (run-hook-with-args-until-success 'embark-candidate-collectors)))
+    (pcase type
+      ('consult-grep (let ((embark-after-export-hook #'wgrep-change-to-wgrep-mode))
+		       (embark-export)))
+      ('file (let ((embark-after-export-hook #'wdired-change-to-wdired-mode))
+	       (embark-export)))
+      ('consult-location (let ((embark-after-export-hook #'occur-edit-mode))
+			   (embark-export)))
+      (x (user-error "Embark category %S doesn't support writable export" x)))))
+(define-key minibuffer-local-map (kbd "C-c C-e") 'embark-export-write)
+#+end_src
+
+使用方法：
+1. M-x consult-ripgrep
+   - 上面的内容是搜索这个文件夹下所有内容
+   - 也可以使用 C-s 搜索这个文件的内容
+2. 输入要搜索的内容，不要回车
+3. 直接 C-c C-e
+4. M-C-% or M-x query-replace-regexp
+   - 这个是有确认的替换
+
+*** 手动安装插件
+以[[https://github.com/manateelazycat/awesome-tab][awesome-tab:github]]为例
+
+
+** 一本书
+M-x info
+
+搜索 elisp
+
+这本书介绍了 Elisp 的内容
+
+
 
