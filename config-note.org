@@ -211,5 +211,7 @@ M-x info
 
 这本书介绍了 Elisp 的内容
 
+** 模块化配置管理
 
-
+(setq custom-file (expand-file-name "~/.emacs.d/elisp/custom.el"))
+(load custom-file 'no-error 'no-message)
